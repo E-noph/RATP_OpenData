@@ -10,7 +10,7 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <!--meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"-->
 
     <!-- Required meta tags-->
     <meta charset="utf-8">
@@ -73,7 +73,8 @@
                         <div class="content-block">
                             <p>Le RATP OPEN DATA, C'est le bon Projet !!!</p>
                             <!-- Link to another page -->
-                            <a href="about.html">About app</a>
+                            <a href="about.html">About app</a></br>
+                            <a href="test.html">PAGE TEST</a>
                         </div>
                     </div>
                 </div>
@@ -92,6 +93,8 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
     <script type="text/javascript" src="js/my-app.js"></script>
+    <script type="text/javascript" src="js/application.js"></script>
+    <script type="text/javascript" src="js/test.js"></script>
 </body>
 
 </html>
