@@ -23,6 +23,23 @@ class Application {
     }
 
     /**
+     * Get this._apiURI facades and their methods
+     */
+    callAPIdistance(coords,distance) {
+        $.ajax({
+            url: "https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/coords/"+coords+"/lines?distance="+distance,
+        }).done($.proxy(function(data){
+            // Called service must set "Content-type: application/json"
+            //let res = JSON.parse(data);
+            let res = data;
+            console.log('getAPI response', res);
+
+        }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
+            console.log('CALL API FAILED: ', jqXHR, textStatus, errorThrown);
+        });
+    }
+
+    /**
      *
      */
     initTest() {
