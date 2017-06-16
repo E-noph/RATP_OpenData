@@ -34,7 +34,6 @@ $$(document).on('pageInit', function (e) {
     var page = e.detail.page;
 
     if (page.name === 'test') {
-        console.log("je passe par la !!!")
         app.initTest();
     }
 });
