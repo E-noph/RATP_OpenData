@@ -40,11 +40,6 @@ $$(document).on('deviceready', function() {
     console.log("APP !!",app);
 });
 
-// Login
-$$('.open-login').on('click', function () {
-    myApp.loginScreen();
-});
-
 $$('.login-screen-signin').on('click', $.proxy(function() {
     let mail = $$("#login-screen-mail").val();
     let password = $$("#login-screen-password").val();

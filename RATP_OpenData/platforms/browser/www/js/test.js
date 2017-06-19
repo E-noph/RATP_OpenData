@@ -35,7 +35,7 @@ class TestView {
             success : function(data)
             {
                 console.log('getAPI response', data);
-                
+
                 app.callAPIStation(data[0].stop_area,"20170615T164106&", $.proxy(function (data) {
                     if (data.error) {
                         console.log('get image ERROR', data);
