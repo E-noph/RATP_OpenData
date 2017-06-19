@@ -8,16 +8,20 @@ class TestView {
         console.log("=============== Test::constructor() ========== ");
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
         this._distance = "50";
+        this._Host = 'http://localhost/';
+        this._apiURIstation = 'server/station.php';
     }
 
     init() {
         console.log("=============== Test::init() ========== ");
-        console.log();
+        console.log( this._Host + this._apiURI);
+
+        // A utiliser juste pour les postes qui on les fichier serveurs et la BDD (demandé à Julien)
+        //this.getStation();
 
         this.callAPICloseTo("2.37768;48.85334");
         this.callAPIStation("%3AOIF%3ASA%3A59300","20170615T164106&");
-        this.callAPIItineraire("%3AOIF%3ASA%3A59300","%3AOIF%3ASA%3A59522","20170615T164106&")
-
+        this.callAPIItineraire("%3AOIF%3ASA%3A59300","%3AOIF%3ASA%3A59522","20170615T164106&");
     }
 
     /**
@@ -37,6 +41,20 @@ class TestView {
         });
     }
 
+    /**
+     * Fonction qui appelle notre base de données et récupére tous les noms de stations ainsi que leurs codes et coordonnées.
+     */
+    getStation() {
+        $.ajax({
+            url: this._Host + this._apiURIstation,
+            dataType : "json",
+            success : function(data)
+            {
+                console.log('getAPI response', data);
+                console.log(data[0].stop_area);
+            }
+        });
+    }
 
     /**
      * Fonction qui appelle l'API navitia pour récupérer les passages des prochains transports à un point donné
@@ -85,5 +103,4 @@ class TestView {
             console.log('CALL API ITINERAIRE FAILED: ', jqXHR, textStatus, errorThrown);
         });
     }
-
 }

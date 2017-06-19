@@ -11,7 +11,8 @@ class Application {
         this._serverPhonegap = location.href.split(':')[1].substr(2);
 
         // powered by the server
-        this._Host = 'http://134.157.46.190:3000/';
+
+        this._api = null;
 
         // views
         this._test = new TestView();

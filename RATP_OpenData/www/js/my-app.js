@@ -25,7 +25,6 @@ $$(document).on('deviceready', function() {
 
     app = new Application();
     console.log("APP !!",app);
-
 });
 
 // Now we need to run the code that will be executed only for About page.
