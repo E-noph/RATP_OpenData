@@ -40,13 +40,30 @@ $$(document).on('deviceready', function() {
     console.log("APP !!",app);
 });
 
+// Login
+$$('.open-login').on('click', function () {
+    myApp.loginScreen();
+});
+
 $$('.login-screen-signin').on('click', $.proxy(function() {
-    let username = $$("#login-screen-username").val();
+    let mail = $$("#login-screen-mail").val();
     let password = $$("#login-screen-password").val();
-    console.log(username);
-    app.getUser();
+
+    if (mail == "") {
+        myApp.alert("Merci de saisir votre email", function () {
+            mainView.goBack();
+        });
+    } else if (password == "") {
+        myApp.alert("Merci de saisir votre mot de passe", function () {
+            mainView.goBack();
+        });
+    } else {
+        app.getUser(mail, password);
+    }
+
 }));
 
+// Déclaration des pages
 $$(document).on('pageInit', function (e) {
     var page = e.detail.page;
 
