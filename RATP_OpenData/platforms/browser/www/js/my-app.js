@@ -1,5 +1,19 @@
 var app = null;
 
+/*var isAndroid = true;//Framework7.prototype.device.android === true;
+var isIos = false;//Framework7.prototype.device.ios === true;
+console.log('isAndroid: '+isAndroid);
+console.log('isIos: '+isIos);
+
+var $$ = Dom7;
+
+if (isAndroid) {
+    // Change class
+    $$('.view .navbar-through').removeClass('navbar-through').addClass('navbar-fixed');
+    // And move Navbar into Page
+    //$$('.view .navbar').prependTo('.view .page');
+}*/
+
 // Initialize app
 var myApp = new Framework7({
     debug: true,
@@ -8,7 +22,6 @@ var myApp = new Framework7({
     smartSelectOpenIn:'picker',
 });
 myApp.debug = true;
-
 
 // If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
@@ -25,10 +38,14 @@ $$(document).on('deviceready', function() {
 
     app = new Application();
     console.log("APP !!",app);
-
 });
 
-// Now we need to run the code that will be executed only for About page.
+$$('.login-screen-signin').on('click', $.proxy(function() {
+    let username = $$("#login-screen-username").val();
+    let password = $$("#login-screen-password").val();
+    console.log(username);
+    app.getUser();
+}));
 
 $$(document).on('pageInit', function (e) {
     var page = e.detail.page;
