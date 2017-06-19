@@ -21,16 +21,24 @@
 
 .item-right .now {
     color: #50E3C2;
-    font-size: 2.5em;
+    font-size: 2.2em;
 }
 
 .item-right .now.time{
     content:" '' ";
     color:#50E3C2;
-    padding-right:5px;
+    padding-right:8px;
+    line-height:0em;
+}
+
+.item-right .now.time img{
+    max-width: 9px;
 }
 
 .item-right .next{
-    line-height: 2.5em;
+    line-height: 1.9em;
     color: #B6B6B6;
+    font-size:1.5em;
+    align-self: flex-end;
+
 }
