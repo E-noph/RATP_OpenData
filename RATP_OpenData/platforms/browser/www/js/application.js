@@ -9,16 +9,27 @@ class Application {
      */
     constructor() {
         this._serverPhonegap = location.href.split(':')[1].substr(2);
-
-        // powered by the server
-
-        this._api = null;
+        this._user = "";
 
         // views
         this._test = new TestView();
 
         console.log("++++++++++", this._serverPhonegap);
 
+    }
+
+    /**
+     * Fonction qui appelle notre base de données pour voir si l'utilisateur existe.
+     */
+    getUser(email) {
+        $.ajax({
+            url: "http://localhost/server/connect_user.php",
+            data: 'email='+ email,
+            success : function(data)
+            {
+                console.log('getAPIconnectUser response', data);
+            }
+        });
     }
 
     /**
