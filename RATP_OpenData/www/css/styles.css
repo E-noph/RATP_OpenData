@@ -13,3 +13,24 @@
 .statusbar-overlay {
     background: #000000;
 }
+
+.item-right {
+    padding-right: 16px;
+    display: inline-flex;
+}
+
+.item-right .now {
+    color: #50E3C2;
+    font-size: 2.5em;
+}
+
+.item-right .now.time{
+    content:" '' ";
+    color:#50E3C2;
+    padding-right:5px;
+}
+
+.item-right .next{
+    line-height: 2.5em;
+    color: #B6B6B6;
+}

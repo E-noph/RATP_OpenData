@@ -15,6 +15,7 @@ class Application {
 
         // views
         this._test = new TestView();
+        this._next-trains = new NextTrainsView();
 
         console.log("++++++++++", this._serverPhonegap);
 
