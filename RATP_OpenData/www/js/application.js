@@ -14,6 +14,8 @@ class Application {
         // views
         this._test = new TestView();
         this._next-trains = new NextTrainsView();
+        this._search = new SearchView();
+        this._search2 = new Search2();
 
         console.log("++++++++++", this._serverPhonegap);
 

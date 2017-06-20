@@ -40,5 +40,41 @@
     color: #B6B6B6;
     font-size:1.5em;
     align-self: flex-end;
+}
 
+/*LOGO*/
+
+.logo{
+    display: flex;
+    justify-content: center;
+    max-height: 250px;
+}
+
+.logo img{
+    max-width: 80%;
+    height: auto;
+    margin: auto;
+}
+
+.skyline{
+    display:flex;
+    justify-content:center;
+}
+
+.search{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-content.grey {
+    background: #EEEEEE ;
+    background-image: url('/img/skyline.svg');
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+a.searchcard{
+ color: #7F7F7F;
 }
