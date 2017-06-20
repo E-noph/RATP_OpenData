@@ -28,7 +28,8 @@ class Application {
     }
 
     /**
-     * Fonction qui appelle notre base de données pour voir si l'utilisateur existe.
+     * Fonction qui appelle notre base de données pour voir si l'utilisateur existe puis si bon résultat sauvegarde
+     * l'utilsateur dans la base du téléphone.
      */
     getUser(email, password) {
         console.log(this._APIServer + "connect_user.php");
@@ -99,7 +100,7 @@ class Application {
     }
 
     /**
-     * Get this._apiURI facades and their methods
+     * Get APIServer
      */
     getAPI() {
 
@@ -148,36 +149,7 @@ class Application {
     }
 
     /**
-     * Fonction qui appelle l'API navitia pour récupérer les passages des prochains transports à un point donné
-     * @param codeStation
-     * @param dateTime
-     */
-    callAPIStation(codeStation, dateTime) {
-        var result = "";
-
-        $.ajax({
-            url: this._APINativia + "stop_areas/stop_area%3AOIF%3ASA%3A"+codeStation+"/arrivals?from_datetime="+dateTime,
-        }).done($.proxy(function(data){
-
-            let res = data;
-            console.log('getAPIstation response', res);
-
-            // Boucle pour récup les infos des stations
-            for (var i = 0; i < data.arrivals.length; i++) {
-
-                result += '<p>' + data.arrivals[i].display_informations.commercial_mode + data.arrivals[i].display_informations.code +
-                    ', Sa destination est ' + data.arrivals[i].display_informations.direction + '</p></br>';
-            }
-
-            $$('#test-page-content').html(result);
-
-        }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
-            console.log('CALL API STATION FAILED: ', jqXHR, textStatus, errorThrown);
-        });
-    }
-
-    /**
-     *
+     * Fonction pour faire apparaitre la page login lors de la connexion à l'application
      */
     showLogin() {
         myApp.loginScreen();
@@ -226,69 +198,16 @@ class Application {
             let username = $$("#login-screen-username").val();
             let password = $$("#login-screen-password").val();
 
+            if (username == "") {
+                myApp.alert("Merci de saisir un mail");
+            } else if (password == "") {
+                myApp.alert("Merci de saisir un mot de passe");
+            } else {
+                app.getUser(username, password);
+            }
+
             console.log("5");
 
-            app.getUser(username, password);
-            /*$.ajax({
-                url: "http://localhost/server/connect_user.php",
-                data: {email: username, password: password},
-                dataType: "json",
-                success: function (data) {
-                    console.log('getAPIconnectUser response', data);
-
-                    console.log("6");
-
-                    /*myDB.transaction(function (transaction) {
-                        //Try to find duplicate credentials in SQLite database
-                        transaction.executeSql('SELECT DISTINCT user FROM account_list', [],
-                            function (tx, results) {
-                                let double = 0;
-                                for (let i = 0; i < results.rows.length; i++) {
-                                    if (username == results.rows[i].user) {
-                                        double = 1;
-                                    }
-                                }
-
-                                // Update account list
-                                if (!double) {
-                                    // Save credentials to SQLite database
-                                    myDB.transaction(function (transaction) {
-                                        transaction.executeSql('INSERT INTO account_list (id, user, isDefault) VALUES (null, "' + username + '", 0)', [],
-                                            function (tx, results) {
-                                                console.log("Compte ajouté au gestionnaire de comptes.");
-                                            }, function () {
-                                                console.log("Les identifiants de connexion n'ont pu être sauvegardés.");
-                                            });
-                                    });
-                                    // Update app._accountList
-                                    myDB.transaction(function (transaction) {
-                                        transaction.executeSql('SELECT * FROM account_list', [],
-                                            function (tx, results) {
-                                                app._accountList = results;
-                                            }, function () {
-                                                console.log("Erreur SQLite: Impossible de mettre à jour le gestionnaire de comptes.");
-                                            });
-                                    });
-                                }
-                            }, function () {
-                                console.log("Erreur SQLite : impossible de récupérer la liste des comptes utilisateurs.");
-                            });
-                    });
-
-                    // Initialize application
-                    myApp.closeModal();
-                    this._userID = data.ID;
-                    this._userBeingID = data.ID_wrk_being;*/
-
-                    /*if (data[0].mail == "") {
-                     myApp.alert("Erreur d'identification, si vous avez pas de compte merci de vous inscrire", function () {
-                     mainView.goBack();
-                     });
-                     } else if (email == data[0].mail) {
-                     myApp.closeModal();
-                     }*/
-               /* }
-            });*/
         }));
         console.log("Fin");
 
