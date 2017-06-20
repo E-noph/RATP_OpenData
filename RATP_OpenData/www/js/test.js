@@ -14,10 +14,10 @@ class TestView {
 
     init() {
         console.log("=============== Test::init() ========== ");
-        console.log( this._Host + this._apiURI);
+        console.log( this._Host + this._apiURIstation);
 
         // A utiliser juste pour les postes qui on les fichier serveurs et la BDD (demandé à Julien)
-        this.getStation("Jussieu");
+        this.getStation("Madeleine");
 
         this.callAPICloseTo("2.37768;48.85334");
         //this.callAPIStation("59300","20170615T164106&");

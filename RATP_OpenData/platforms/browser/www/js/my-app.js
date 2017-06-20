@@ -1,4 +1,4 @@
-var app = null;
+var app = null,  myDB = null;
 
 /*var isAndroid = true;//Framework7.prototype.device.android === true;
 var isIos = false;//Framework7.prototype.device.ios === true;
@@ -26,6 +26,9 @@ myApp.debug = true;
 // If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
 
+// Initialize SQLite database for local account storage
+myDB = openDatabase('localAccountDB', '1.0', 'localAccountDB', 655367);
+
 // Add view
 var mainView = myApp.addView('.view-main', {
     // Because we want to use dynamic navbar, we need to enable it for this view:
@@ -37,26 +40,9 @@ $$(document).on('deviceready', function() {
     console.log("Device is ready!");
 
     app = new Application();
+    app.getAPI();
     console.log("APP !!",app);
 });
-
-$$('.login-screen-signin').on('click', $.proxy(function() {
-    let mail = $$("#login-screen-mail").val();
-    let password = $$("#login-screen-password").val();
-
-    if (mail == "") {
-        myApp.alert("Merci de saisir votre email", function () {
-            mainView.goBack();
-        });
-    } else if (password == "") {
-        myApp.alert("Merci de saisir votre mot de passe", function () {
-            mainView.goBack();
-        });
-    } else {
-        app.getUser(mail, password);
-    }
-
-}));
 
 // Déclaration des pages
 $$(document).on('pageInit', function (e) {
@@ -64,5 +50,7 @@ $$(document).on('pageInit', function (e) {
 
     if (page.name === 'test') {
         app.initTest();
+    } else if (page.name === 'account') {
+        app.initAccountManager();
     }
 });

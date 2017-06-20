@@ -75,6 +75,7 @@
                             <!-- Link to another page -->
                             <a href="about.html">About app</a></br>
                             <a href="test.html">PAGE TEST</a>
+                            <a href="account.html">Account</a>
                         </div>
                     </div>
                 </div>
@@ -90,35 +91,38 @@
         </div>
     </div>
 
-    <div class="login-screen modal-in">
-        <div class="login-screen-title"><img src="img/ParisGO-text.png" alt="logo" height="auto" width="90%"></div>
-        <form>
-            <div class="list-block">
-                <ul>
-                    <li class="item-content">
-                        <div class="item-inner">
-                            <div class="item-title label">E-mail</div>
-                            <div class="item-input">
-                                <input type="text" name="mail" placeholder="Your mail" id="login-screen-mail"/>
-                            </div>
+    <div class="login-screen">
+        <div class="view">
+            <div class="page">
+                <div class="page-content login-screen-content">
+                    <div class="login-screen-title i18n">ParisGo</div>
+                    <form id="login-form">
+                        <div class="list-block">
+                            <ul>
+                                <li class="item-content">
+                                    <div class="item-inner" id="user-autocomplete">
+                                        <div class="item-title floating-label i18n icon-user7">Identifiant</div>
+                                        <div class="item-input i18n">
+                                            <input type="text" placeholder="your mail" id="login-screen-username"></div>
+                                    </div>
+                                </li>
+
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title floating-label i18n icon-userlock">Mot de passe</div>
+                                        <div class="item-input i18n">
+                                            <input type="text" placeholder="your password" id="login-screen-password"></div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                    </li>
-                    <li class="item-content">
-                        <div class="item-inner">
-                            <div class="item-title label">Mot de Passe</div>
-                            <div class="item-input">
-                                <input type="password" name="password" placeholder="Your password" id="login-screen-password"/>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                    </form>
+                    <div class="content-block">
+                        <a href="#" class="login-screen-signin button button-big button-fill i18n" id="login-screen-signin">Connecte-toi</a>
+                    </div>
+                </div>
             </div>
-            <div class="list-block">
-                <ul>
-                    <li><a href="#" class="login-screen-signin item-link list-button">Connecte-toi</a></li>
-                </ul>
-            </div>
-        </form>
+        </div>
     </div>
 
     <script type="text/javascript" src="cordova.js"></script>
@@ -127,6 +131,7 @@
     <script type="text/javascript" src="js/my-app.js"></script>
     <script type="text/javascript" src="js/application.js"></script>
     <script type="text/javascript" src="js/test.js"></script>
+    <script type="text/javascript" src="js/account.js"></script>
 </body>
 
 </html>
