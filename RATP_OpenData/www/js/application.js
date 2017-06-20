@@ -32,7 +32,6 @@ class Application {
      * l'utilsateur dans la base du téléphone.
      */
     getUser(email, password) {
-        console.log(this._APIServer + "connect_user.php");
         $.ajax({
             url: this._APIServer + "connect_user.php",
             data: {email: email, password: password},
@@ -41,7 +40,6 @@ class Application {
 
             let res = data;
             console.log('getUser response', res);
-            console.log(data[0]);
 
             if (email == data[0].mail) {
                 myDB.transaction(function (transaction) {
@@ -55,8 +53,6 @@ class Application {
                                 }
                             }
 
-                            console.log("8");
-
                             // Update account list
                             if (!double) {
                                 // Save credentials to SQLite database
@@ -68,7 +64,6 @@ class Application {
                                             console.log("Les identifiants de connexion n'ont pu être sauvegardés.");
                                         });
                                 });
-                                console.log("9");
 
                                 // Update app._accountList
                                 myDB.transaction(function (transaction) {
@@ -79,7 +74,6 @@ class Application {
                                             console.log("Erreur SQLite: Impossible de mettre à jour le gestionnaire de comptes.");
                                         });
                                 });
-                                console.log("10");
 
                             }
                         }, function () {

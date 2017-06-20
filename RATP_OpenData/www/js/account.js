@@ -25,19 +25,18 @@ class AccountManager {
         console.log("=============== AccountManager::displayAccountList() ========== app._accountList",app._accountList );
 
         let chaine = '<ul>',
-            i = 0,
-            serv = app._accountList.rows[i].server;
+            i = 0;
 
         while(i<app._accountList.rows.length){
             chaine += 	'<li class="accordion-item">' +
                 '<a href="#" class="item-content item-link">' +
                 '<div class="item-inner">' +
-                '<div class="item-title">' + app._accountList.rows[i].server + '</div>' +
+                '<div class="item-title">Vos comptes </div>' +
                 '</div>' +
                 '</a>' +
                 '<div class="accordion-item-content">' +
                 '<ul>';
-            while(app._accountList.rows[i]&&app._accountList.rows[i].server===serv) {
+            while(app._accountList.rows[i]) {
                 chaine += 			'<div class="list-block">' +
                     '<li class="swipeout">' +
                     '<div class="swipeout-content item-content">';
@@ -71,7 +70,6 @@ class AccountManager {
                     '</li>';
                 i++;
             }
-            serv = (app._accountList.rows[i]) ? app._accountList.rows[i].server : app._accountList.rows[i-1].server;
             chaine += 				'</div>' +
                 '</ul>' +
                 '</div>';
