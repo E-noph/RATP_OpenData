@@ -47,7 +47,7 @@
 .logo{
     display: flex;
     justify-content: center;
-    max-height: 250px;
+    max-height: 200px;
 }
 
 .logo img{
@@ -77,4 +77,8 @@
 
 a.searchcard{
  color: #7F7F7F;
+}
+
+.two-squares{
+    display:flex;
 }
