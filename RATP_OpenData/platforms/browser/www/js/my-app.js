@@ -53,5 +53,9 @@ $$(document).on('pageInit', function (e) {
         app.initTest();
     } else if (page.name === 'account') {
         app.initAccountManager();
+    }  else if (page.name === 'searchStation') {
+        app.initSearchStation();
+    }  else if (page.name === 'nextTrains') {
+        app.initNextTrains();
     }
 });

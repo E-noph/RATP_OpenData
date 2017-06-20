@@ -15,19 +15,16 @@ class Application {
 
         // views
         this._test = new TestView();
-<<<<<<< HEAD
         this._accountManager = new AccountManager();
+        this._nextTrains = new NextTrainsView();
+        this._searchStation = new SearchStationView();
+
 
         this._accountList = [];
         this._userList = [];
 
         this._userID = '';
         this._userBeingID = '';
-=======
-        this._next-trains = new NextTrainsView();
-        this._search = new SearchView();
-        this._search2 = new Search2();
->>>>>>> Lau
 
         console.log("++++++++++", this._serverPhonegap);
 
@@ -47,52 +44,56 @@ class Application {
             let res = data;
             console.log('getUser response', res);
 
-            if (email == data[0].mail) {
-                myDB.transaction(function (transaction) {
-                    //Try to find duplicate credentials in SQLite database
-                    transaction.executeSql('SELECT DISTINCT user FROM account_list', [],
-                        function (tx, results) {
-                            let double = 0;
-                            for (let i = 0; i < results.rows.length; i++) {
-                                if (email == results.rows[i].user) {
-                                    double = 1;
+            if(data.length != 0) {
+                if (email == data[0].mail) {
+                    myDB.transaction(function (transaction) {
+                        //Try to find duplicate credentials in SQLite database
+                        transaction.executeSql('SELECT DISTINCT user FROM account_list', [],
+                            function (tx, results) {
+                                let double = 0;
+                                for (let i = 0; i < results.rows.length; i++) {
+                                    if (email == results.rows[i].user) {
+                                        double = 1;
+                                    }
                                 }
-                            }
 
-                            // Update account list
-                            if (!double) {
-                                // Save credentials to SQLite database
-                                myDB.transaction(function (transaction) {
-                                    transaction.executeSql('INSERT INTO account_list (id, user, isDefault) VALUES (null, "' + data[0].mail + '", 0)', [],
-                                        function (tx, results) {
-                                            console.log("Compte ajouté au gestionnaire de comptes.");
-                                        }, function () {
-                                            console.log("Les identifiants de connexion n'ont pu être sauvegardés.");
-                                        });
-                                });
+                                // Update account list
+                                if (!double) {
+                                    // Save credentials to SQLite database
+                                    myDB.transaction(function (transaction) {
+                                        transaction.executeSql('INSERT INTO account_list (id, user, isDefault) VALUES (null, "' + data[0].mail + '", 0)', [],
+                                            function (tx, results) {
+                                                console.log("Compte ajouté au gestionnaire de comptes.");
+                                            }, function () {
+                                                console.log("Les identifiants de connexion n'ont pu être sauvegardés.");
+                                            });
+                                    });
 
-                                // Update app._accountList
-                                myDB.transaction(function (transaction) {
-                                    transaction.executeSql('SELECT * FROM account_list', [],
-                                        function (tx, results) {
-                                            app._accountList = results;
-                                        }, function () {
-                                            console.log("Erreur SQLite: Impossible de mettre à jour le gestionnaire de comptes.");
-                                        });
-                                });
+                                    // Update app._accountList
+                                    myDB.transaction(function (transaction) {
+                                        transaction.executeSql('SELECT * FROM account_list', [],
+                                            function (tx, results) {
+                                                app._accountList = results;
+                                            }, function () {
+                                                console.log("Erreur SQLite: Impossible de mettre à jour le gestionnaire de comptes.");
+                                            });
+                                    });
 
-                            }
-                        }, function () {
-                            console.log("Erreur SQLite : impossible de récupérer la liste des comptes utilisateurs.");
-                        });
-                });
+                                }
 
-                // Initialize application
-                myApp.closeModal();
-                this._userID = data.ID;
-                this._userBeingID = data.ID_wrk_being;
+                            }, function () {
+                                console.log("Erreur SQLite : impossible de récupérer la liste des comptes utilisateurs.");
+                            });
+                    });
+
+                    // Initialize application
+                    myApp.closeModal();
+                    this._userID = data.ID;
+                    this._userBeingID = data.ID_wrk_being;
+                }
             } else {
                 console.log("error log !!");
+                myApp.alert("Erreur d'identification !!!");
             }
         }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
             console.log('CALL API USER FAILED: ', jqXHR, textStatus, errorThrown);
@@ -225,6 +226,20 @@ class Application {
      */
     initAccountManager() {
         this._accountManager.init();
+    }
+
+    /**
+     *
+     */
+    initSearchStation() {
+        this._searchStation.init();
+    }
+
+    /**
+     *
+     */
+    initNextTrains() {
+        this._nextTrains.init();
     }
 
 
