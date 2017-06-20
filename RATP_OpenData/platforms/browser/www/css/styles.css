@@ -13,3 +13,72 @@
 .statusbar-overlay {
     background: #000000;
 }
+
+.item-right {
+    padding-right: 16px;
+    display: inline-flex;
+}
+
+.item-right .now {
+    color: #50E3C2;
+    font-size: 2.2em;
+}
+
+.item-right .now.time{
+    content:" '' ";
+    color:#50E3C2;
+    padding-right:8px;
+    line-height:0em;
+}
+
+.item-right .now.time img{
+    max-width: 9px;
+}
+
+.item-right .next{
+    line-height: 1.9em;
+    color: #B6B6B6;
+    font-size:1.5em;
+    align-self: flex-end;
+}
+
+/*LOGO*/
+
+.logo{
+    display: flex;
+    justify-content: center;
+    max-height: 200px;
+}
+
+.logo img{
+    max-width: 80%;
+    height: auto;
+    margin: auto;
+}
+
+.skyline{
+    display:flex;
+    justify-content:center;
+}
+
+.search{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-content.grey {
+    background: #EEEEEE ;
+    background-image: url('/img/skyline.svg');
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+a.searchcard{
+ color: #7F7F7F;
+}
+
+.two-squares{
+    display:flex;
+}

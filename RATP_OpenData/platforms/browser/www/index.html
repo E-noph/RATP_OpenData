@@ -21,7 +21,7 @@
     <meta name="msapplication-tap-highlight" content="no">
 
     <!-- Your app title -->
-    <title>My App</title>
+    <title>ParisGO</title>
 
     <!-- This template defaults to the iOS CSS theme. To support both iOS and material design themes, see the Framework7 Tutorial at the link below:
         http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.html
@@ -29,8 +29,9 @@
 
     <link rel="stylesheet" href="lib/framework7/css/framework7.ios.min.css">
     <link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css">
-
+    <link rel="stylesheet" href="css/metrodna.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="lib/framework7/css/framework7-icons.css">
 </head>
 
 <body>
@@ -40,11 +41,11 @@
     <!-- Panels overlay-->
     <div class="panel-overlay"></div>
     <!-- Left panel with reveal effect-->
-    <div class="panel panel-left panel-reveal">
+    <!--<div class="panel panel-left panel-reveal">
         <div class="content-block">
             <p>Le RATP OPEN DATA, C'est le bon Projet !!!</p>
         </div>
-    </div>
+    </div>-->
 
     <!-- Views -->
     <div class="views">
@@ -54,13 +55,13 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                    <div class="center sliding">Awesome App</div>
+                    <div class="center sliding">ParisGO</div>
                     <div class="right">
                         <!--
                           Right link contains only icon - additional "icon-only" class
                           Additional "open-panel" class tells app to open panel when we click on this link
                         -->
-                        <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+                        <!--<a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>-->
                     </div>
                 </div>
             </div>
@@ -69,28 +70,59 @@
                 <!-- Page, "data-page" contains page name -->
                 <div data-page="index" class="page">
                     <!-- Scrollable page content -->
-                    <div class="page-content">
+                    <div class="page-content grey">
                         <div class="content-block">
-                            <p>Le RATP OPEN DATA, C'est le bon Projet !!!</p>
+                                        <div class="logo">
+                            <img src="img/ParisGO-grey.png" alt="">
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <a href="search2.html" class="searchcard"><div class="card-content-inner search">Rechercher une station <i class="f7-icons">search</i></div></a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="card square">
+                                <div class="card-content">
+                                    <a href="#" class="searchcard"><div class="card-content-inner search">A Proximité <i class="f7-icons">compass</i></div></a>
+                                </div>
+                            </div>
+                            <div class="card square">
+                                <div class="card-content">
+                                    <a href="#" class="searchcard"><div class="card-content-inner search">Itinéraire <i class="f7-icons">flag</i></div></a>
+                                </div>
+                            </div>
+                            <div class="card square">
+                                <div class="card-content">
+                                    <a href="#" class="searchcard"><div class="card-content-inner search">Paramètres <i class="f7-icons">settings</i></div></a>
+                                </div>
+                            </div>
+                        </div>
+                            <!--<p>Le RATP OPEN DATA, C'est le bon Projet !!!</p>-->
                             <!-- Link to another page -->
-                            <a href="about.html">About app</a></br>
+                            <!--<a href="about.html">About app</a></br>
                             <a href="test.html">PAGE TEST</a>
-                            <a href="account.html">Account</a>
+                            <a href="account.html">Account</a>-->
+                            <!--<a href="about.html">About app</a></br>
+                            <a href="test.html">PAGE TEST</a></br>
+                            <a href="next-trains.html">Prochains passages</a></br>
+                            <a href="search.html">Rechercher une station</a></br>
+                            <a href="search2.html">Rechercher une station-suite</a>-->
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Bottom Toolbar-->
-            <div class="toolbar">
+            <!--<div class="toolbar">
                 <div class="toolbar-inner">
-                    <!-- Toolbar links -->
+                    Toolbar links
                     <a href="#" class="link">Link 1</a>
                     <a href="#" class="link">Link 2</a>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 
+<<<<<<< HEAD
     <div class="login-screen">
         <div class="view">
             <div class="page">
@@ -115,6 +147,27 @@
                                     </div>
                                 </li>
                             </ul>
+=======
+    <!--<div class="login-screen modal-in">
+        <div class="login-screen-title"><img src="img/ParisGO-text.png" alt="logo" height="auto" width="90%"></div>
+        <form>
+            <div class="list-block">
+                <ul>
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">E-mail</div>
+                            <div class="item-input">
+                                <input type="text" name="username" placeholder="Your username" id="login-screen-username"/>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">Mot de Passe</div>
+                            <div class="item-input">
+                                <input type="password" name="password" placeholder="Your password" id="login-screen-password"/>
+                            </div>
+>>>>>>> Lau
                         </div>
                     </form>
                     <div class="content-block">
@@ -122,8 +175,13 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
         </div>
     </div>
+=======
+        </form>
+    </div>-->
+>>>>>>> Lau
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>

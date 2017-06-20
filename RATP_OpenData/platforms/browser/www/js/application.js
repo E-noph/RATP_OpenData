@@ -15,6 +15,7 @@ class Application {
 
         // views
         this._test = new TestView();
+<<<<<<< HEAD
         this._accountManager = new AccountManager();
 
         this._accountList = [];
@@ -22,6 +23,11 @@ class Application {
 
         this._userID = '';
         this._userBeingID = '';
+=======
+        this._next-trains = new NextTrainsView();
+        this._search = new SearchView();
+        this._search2 = new Search2();
+>>>>>>> Lau
 
         console.log("++++++++++", this._serverPhonegap);
 
