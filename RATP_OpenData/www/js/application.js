@@ -16,8 +16,7 @@ class Application {
         // views
         this._test = new TestView();
         this._accountManager = new AccountManager();
-        this._nextTrains = new NextTrainsView();
-        this._searchStation = new SearchStationView();
+        this._station = new StationView();
         this._closeTo = new CloseToView();
         this._pathItinerary = new PathItineraryView();
 
@@ -233,14 +232,14 @@ class Application {
      *
      */
     initSearchStation() {
-        this._searchStation.init();
+        this._station.init();
     }
 
     /**
      *
      */
-    initNextTrains() {
-        this._nextTrains.init();
+    initNextTrains(codeStation, nameStation) {
+        this._station.initDataTrains(codeStation, nameStation);
     }
 
     /**
