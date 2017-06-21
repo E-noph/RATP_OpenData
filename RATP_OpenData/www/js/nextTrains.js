@@ -3,11 +3,11 @@
 class NextTrainsView {
 
     constructor() {
-        console.log("=============== nextTrain::constructor() ========== ");
+        console.log("nextTrain:constructor()");
     }
 
     init(server) {
-        console.log("=============== nextTrain::init() ========== ");
+        console.log("nextTrain::init()");
         console.log(server);
 
     }

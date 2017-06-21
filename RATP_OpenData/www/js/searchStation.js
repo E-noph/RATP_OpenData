@@ -3,11 +3,11 @@
 class SearchStationView {
 
     constructor() {
-        console.log("=============== searchStation::constructor() ========== ");
+        console.log("searchStation:constructor()");
     }
 
     init(server) {
-        console.log("=============== searchStation::init() ========== ");
+        console.log("searchStation::init()");
         console.log(server);
 
         this.searchBar();

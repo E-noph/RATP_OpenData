@@ -18,7 +18,8 @@ class Application {
         this._accountManager = new AccountManager();
         this._nextTrains = new NextTrainsView();
         this._searchStation = new SearchStationView();
-
+        this._closeTo = new CloseToView();
+        this._pathItinerary = new PathItineraryView();
 
         this._accountList = [];
         this._userList = [];
@@ -146,7 +147,7 @@ class Application {
                 }
             );
         });
-        this.showLogin();
+        //this.showLogin();
     }
 
     /**
@@ -240,6 +241,20 @@ class Application {
      */
     initNextTrains() {
         this._nextTrains.init();
+    }
+
+    /**
+     *
+     */
+    initCloseTo() {
+        this._closeTo.init();
+    }
+
+    /**
+     *
+     */
+    initPathItinerary() {
+        this._pathItinerary.init();
     }
 
 

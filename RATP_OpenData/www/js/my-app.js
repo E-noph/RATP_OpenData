@@ -53,9 +53,13 @@ $$(document).on('pageInit', function (e) {
         app.initTest();
     } else if (page.name === 'account') {
         app.initAccountManager();
-    }  else if (page.name === 'searchStation') {
+    } else if (page.name === 'searchStation') {
         app.initSearchStation();
-    }  else if (page.name === 'nextTrains') {
+    } else if (page.name === 'nextTrains') {
         app.initNextTrains();
+    } else if (page.name === 'closeTo') {
+        app.initCloseTo();
+    } else if (page.name === 'pathItinerary') {
+        app.initPathItinerary();
     }
 });
