@@ -1,0 +1,64 @@
+<div class="pages">
+    <div data-page="searchStation" class="page">
+
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="#" class="back link">
+                        <i class="icon icon-back"></i>
+                        <span>Retour</span>
+                    </a>
+                </div>
+                <div class="center sliding">Rechercher une station</div>
+            </div>
+        </div>
+
+        <!--<div class="toolbar toolbar-bottom">
+            <div class="toolbar-inner">
+                <div class="content-block-inner">
+                    <p class="buttons-row">
+                    </p>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="page-content grey" id="next-trains-page-content">
+                <!-- Search Bar -->
+                <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init">
+                    <div class="searchbar-input">
+                        <input type="search" placeholder="Rechercher"><a href="#" class="searchbar-clear"></a>
+                    </div><a href="#" class="searchbar-cancel">Annuler</a>
+                </form>
+
+                <!-- Search Bar overlay -->
+                <div class="searchbar-overlay"></div>
+
+                <div class="page-content">
+                    <!-- This block will be displayed if nothing found -->
+                    <div class="content-block searchbar-not-found">
+                        <div class="content-block-inner">Oops, j'ai rien trouvé !</div>
+                    </div>
+
+                    <!-- This block will be displayed if anything found, and this list block is used a searbar target -->
+                    <div class="list-block list-block-search searchbar-found">
+                        <ul>
+                            <li class="item-content">
+                                <div class="item-inner">
+                                    <a href="#">
+                                        <div class="item-title">Jussieu</div>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="item-content">
+                                <div class="item-inner">
+                                    <a href="#">
+                                        <div class="item-title">Station 2</div>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -12,16 +12,33 @@ class TestView {
         this._apiURIstation = 'server/station.php';
     }
 
-    init() {
+    init(api) {
         console.log("=============== Test::init() ========== ");
-        console.log( this._Host + this._apiURI);
+        console.log( this._Host + this._apiURIstation);
+        this._api = api;
 
         // A utiliser juste pour les postes qui on les fichier serveurs et la BDD (demandé à Julien)
-        //this.getStation();
+        this.getStation("Madeleine");
 
         this.callAPICloseTo("2.37768;48.85334");
-        this.callAPIStation("%3AOIF%3ASA%3A59300","20170615T164106&");
+        //this.callAPIStation("59300","20170615T164106&");
         this.callAPIItineraire("%3AOIF%3ASA%3A59300","%3AOIF%3ASA%3A59522","20170615T164106&");
+    }
+
+    /**
+     * Fonction qui appelle notre base de données et récupére tous les noms de stations ainsi que leurs codes et coordonnées.
+     */
+    getStation(station) {
+        $.ajax({
+            url: this._Host + this._apiURIstation,
+            data: {station: station},
+            dataType : "json",
+            success : function(data)
+            {
+                console.log('getAPI response', data);
+                test.callAPIStation(data[0].stop_area,"20170615T164106&");
+            }
+        });
     }
 
     /**
@@ -38,50 +55,6 @@ class TestView {
 
         }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
             console.log('CALL API CLOSETO FAILED: ', jqXHR, textStatus, errorThrown);
-        });
-    }
-
-    /**
-     * Fonction qui appelle notre base de données et récupére tous les noms de stations ainsi que leurs codes et coordonnées.
-     */
-    getStation() {
-        $.ajax({
-            url: this._Host + this._apiURIstation,
-            dataType : "json",
-            success : function(data)
-            {
-                console.log('getAPI response', data);
-                console.log(data[0].stop_area);
-            }
-        });
-    }
-
-    /**
-     * Fonction qui appelle l'API navitia pour récupérer les passages des prochains transports à un point donné
-     * @param codeStation
-     * @param dateTime
-     */
-    callAPIStation(codeStation, dateTime) {
-        var result = "";
-
-        $.ajax({
-            url: this._APINativia + "stop_areas/stop_area"+codeStation+"/arrivals?from_datetime="+dateTime,
-        }).done($.proxy(function(data){
-
-            let res = data;
-            console.log('getAPIstation response', res);
-
-            // Boucle pour récup les infos des stations
-            for (var i = 0; i < data.arrivals.length; i++) {
-
-                result += '<p>' + data.arrivals[i].display_informations.commercial_mode + data.arrivals[i].display_informations.code +
-                    ', Sa destination est ' + data.arrivals[i].display_informations.direction + '</p></br>';
-            }
-
-            $$('#test-page-content').html(result);
-
-        }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
-            console.log('CALL API STATION FAILED: ', jqXHR, textStatus, errorThrown);
         });
     }
 
@@ -103,4 +76,34 @@ class TestView {
             console.log('CALL API ITINERAIRE FAILED: ', jqXHR, textStatus, errorThrown);
         });
     }
+
+    /**
+     * Fonction qui appelle l'API navitia pour récupérer les passages des prochains transports à un point donné
+     * @param codeStation
+     * @param dateTime
+     */
+    callAPIStation(codeStation, dateTime) {
+        var result = "";
+
+        $.ajax({
+            url: this._APINativia + "stop_areas/stop_area%3AOIF%3ASA%3A"+codeStation+"/arrivals?from_datetime="+dateTime,
+        }).done($.proxy(function(data){
+
+            let res = data;
+            console.log('getAPIstation response', res);
+
+            // Boucle pour récup les infos des stations
+            for (var i = 0; i < data.arrivals.length; i++) {
+
+                result += '<p>' + data.arrivals[i].display_informations.commercial_mode + data.arrivals[i].display_informations.code +
+                    ', Sa destination est ' + data.arrivals[i].display_informations.direction + '</p></br>';
+            }
+
+            $$('#test-page-content').html(result);
+
+        }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
+            console.log('CALL API STATION FAILED: ', jqXHR, textStatus, errorThrown);
+        });
+    }
+
 }
