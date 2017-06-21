@@ -4,17 +4,45 @@ class SearchStationView {
 
     constructor() {
         console.log("searchStation:constructor()");
+        this._Host = 'http://localhost/';
+        this._apiURIstation = 'server/station.php';
     }
 
-    init(server) {
+    init() {
         console.log("searchStation::init()");
-        console.log(server);
 
-        this.searchBar();
+        this.getStation();
 
     }
 
-    searchBar() {
-        console.log("tu pues !!!")
-    }
+    /**
+     * Fonction qui appelle notre base de données et récupére tous les noms de stations ainsi que leurs codes et coordonnées.
+     */
+    getStation() {
+        $.ajax({
+            url: this._Host + this._apiURIstation,
+            dataType : "json",
+            success : function(data)
+            {
+                var itemStationSearchBar = "";
+
+                console.log('getAPIstation response', data);
+                console.log(data[0].name);
+                
+                for (var i = 0; i < data.length; i++) {
+                        itemStationSearchBar += '<li class="item-content">' +
+                                                    '<div class="item-inner">' +
+                                                        '<a href="nextTrains.html">' +
+                                                            '<div class="item-title">'+data[i].name+'</div>' +
+                                                        '</a>' +
+                                                    '</div>' +
+                                                '</li>';
+                }
+               $$('#list-items-stations').html(itemStationSearchBar);
+
+                //test.callAPIStation(data[0].stop_area,"20170615T164106&");
+            }
+        });
+    }    
+
 }

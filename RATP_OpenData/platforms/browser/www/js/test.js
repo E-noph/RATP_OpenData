@@ -18,7 +18,7 @@ class TestView {
         this._api = api;
 
         // A utiliser juste pour les postes qui on les fichier serveurs et la BDD (demandé à Julien)
-        this.getStation("Madeleine");
+        this.getStation();
 
         this.callAPICloseTo("2.37768;48.85334");
         //this.callAPIStation("59300","20170615T164106&");
@@ -28,15 +28,29 @@ class TestView {
     /**
      * Fonction qui appelle notre base de données et récupére tous les noms de stations ainsi que leurs codes et coordonnées.
      */
-    getStation(station) {
+    getStation() {
         $.ajax({
             url: this._Host + this._apiURIstation,
-            data: {station: station},
             dataType : "json",
             success : function(data)
             {
-                console.log('getAPI response', data);
-                test.callAPIStation(data[0].stop_area,"20170615T164106&");
+                var itemStationSearchBar = "";
+
+                console.log('getAPIstation response', data);
+                console.log(data[0].name);
+                
+                for (var i = 0; i < data.length; i++) {
+                        itemStationSearchBar += '<li class="item-content">' +
+                                                    '<div class="item-inner">' +
+                                                        '<a href="#">' +
+                                                            '<div class="item-title">'+data[i].name+'</div>' +
+                                                        '</a>' +
+                                                    '</div>' +
+                                                '</li>';
+                }
+               $$('#list-items-stations').html(itemStationSearchBar);
+
+                //test.callAPIStation(data[0].stop_area,"20170615T164106&");
             }
         });
     }

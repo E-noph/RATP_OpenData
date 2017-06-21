@@ -26,7 +26,7 @@ class Application {
 
         this._userID = '';
         this._userBeingID = '';
-
+        
         console.log("++++++++++", this._serverPhonegap);
 
     }
