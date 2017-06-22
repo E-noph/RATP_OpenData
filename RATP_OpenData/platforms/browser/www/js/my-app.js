@@ -41,9 +41,12 @@ $$(document).on('deviceready', function() {
 
     app = new Application();
     test = new TestView();
-    app.getAPI();
     console.log("APP !!",app);
 });
+
+$$('#connect-user').on('click', $.proxy(function() {
+    app.getAPI();
+}));
 
 // Déclaration des pages
 $$(document).on('pageInit', function (e) {
