@@ -40,12 +40,14 @@
 
     <!-- Panels overlay-->
     <div class="panel-overlay"></div>
-    <!-- Left panel with reveal effect-->
-    <!--<div class="panel panel-left panel-reveal">
-        <div class="content-block">
-            <p>Le RATP OPEN DATA, C'est le bon Projet !!!</p>
-        </div>
-    </div>-->
+    <!-- Left Panel with Reveal effect -->
+  <div class="panel panel-left panel-reveal">
+    <div class="content-block">
+      <p>Du contenu ici</p>
+      <!-- Click on link with "close-panel" class will close panel -->
+      <!-- Click on link with "open-panel" and data-panel="right" attribute will open Right panel -->
+    </div>
+  </div>
 
     <!-- Views -->
     <div class="views">
@@ -54,14 +56,16 @@
             <!-- Top Navbar-->
             <div class="navbar">
                 <div class="navbar-inner">
-                    <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                    <div class="center sliding">ParisGO</div>
+                    <div class="left">
+                        <a href="#" data-panel="right" class="open-panel">
+                            <i class="f7-icons icon-green">bars</i>
+                        </a>
+                    </div>
+                    <div class="center">ParisGO</div>
                     <div class="right">
-                        <!--
-                          Right link contains only icon - additional "icon-only" class
-                          Additional "open-panel" class tells app to open panel when we click on this link
-                        -->
-                        <!--<a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>-->
+                        <a href="#">
+                            <i class="f7-icons icon-green">person_fill</i>
+                        </a>
                     </div>
                 </div>
             </div>

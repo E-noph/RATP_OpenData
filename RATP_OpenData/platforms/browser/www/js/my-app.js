@@ -17,7 +17,7 @@ if (isAndroid) {
 // Initialize app
 var myApp = new Framework7({
     debug: true,
-    swipePanel: 'right',
+    swipePanel: 'left',
     swipePanelThreshold: 5,
     smartSelectOpenIn:'picker',
 });
