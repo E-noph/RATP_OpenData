@@ -56,7 +56,7 @@ $$(document).on('pageInit', function (e) {
     } else if (page.name === 'searchStation') {
         app.initSearchStation();
     } else if (page.name === 'nextTrains') {
-        app.initNextTrains();
+        app.initNextTrains(page.url.split('=')[1],page.url.split('=')[2]);
     } else if (page.name === 'closeTo') {
         app.initCloseTo();
     } else if (page.name === 'pathItinerary') {
