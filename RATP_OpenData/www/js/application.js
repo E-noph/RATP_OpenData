@@ -19,7 +19,7 @@ class Application {
         this._station = new StationView();
         this._closeTo = new CloseToView();
         this._pathItinerary = new PathItineraryView();
-        this._favorites = new FavoritesView();
+        this._favorites = new FavoritesStationsView();
 
         this._accountList = [];
         this._userList = [];
@@ -261,7 +261,7 @@ class Application {
     /**
      *
      */
-    initFavorites() {
-        this._favorites.init();
+    initFavoritesStations() {
+        this._favorites.init(this._userID);
     }
 }
