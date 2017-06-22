@@ -12,9 +12,6 @@ class AccountManager {
         console.log("=============== AccountManager::init() ========== ");
 
         this.btnBack = $$('#btn-back-home');
-        this.btnAddAccount = $$('#btn-add-account');
-
-        this.btnAddAccount.click($.proxy(this.addAccount, this));
         this.btnBack.click($.proxy(this.restoreSwipePanel, this));
 
         this.displayAccountList();
@@ -64,8 +61,8 @@ class AccountManager {
                 // Add swipe-out action buttons to each user account item
                 chaine +=					'</div>' +
                     '<div class="swipeout-actions-right">' +
-                    '<a href="#" id="'+i+'-default" class="default action1 bg-orange">utilisateur par défaut</a>' +
-                    '<a href="#" id="'+i+'-delete" class="delete action2 bg-red">Supprimer utilisateur</a>' +
+                    '<a href="#" id="'+i+'-default" class="default action1 bg-orange">Par défaut</a>' +
+                    '<a href="#" id="'+i+'-delete" class="delete action2 bg-red">Supprimer</a>' +
                     '</div>' +
                     '</li>';
                 i++;

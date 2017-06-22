@@ -42,26 +42,31 @@ class FavoritesStationsView {
                                                             '<div class="item-title">'+data[i].name+'</div>' +
                                                         '</a>' +
                                                     '</div>' +
-                                                    '<div class="swipeout-actions-right">' +
-                                                        '<a href="#" id="'+i+'-delete" class="delete action2 bg-red">Supprimer ce favori</a>' +
-                                                    '</div>'+
                                                 '</div>' +
+                                                '<div class="swipeout-actions-right">' +
+                                                    '<a href="#" id="'+data[i].idPoint+'-delete" class="delete action1 bg-red"><i class="f7-icons">trash</i></a>' +
+                                                '</div>'+
                                              '</li>';
                     }
                     $$('#list-favorites-stations').html(favoritesStations);
 
-                    this.btnDelete = $$('.delete');
-                    this.btnDelete.on('click', $.proxy(function() {
-                       favStation.deleteFavorite(id);
+                    $$('.delete').on('click', $.proxy(function(e) {
+                        var el= e.target||event.srcElement;
+                        console.log(el.id);
+                       favStation.deleteFavorite(el.id, id);
                     }));
                 }
             });
         }
     }
 
-    deleteFavorite(event){
+
+    deleteFavorite(idLink, idUser){
         myApp.swipeoutClose();
-        console.log("Favorites deleted !!!");
+        console.log(" deleteFavorite:Init ");
+        let idPoint = idLink.split("-");
+        console.log(idPoint[0]);
+        console.log(idUser);
 
     }
 
