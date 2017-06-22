@@ -82,3 +82,7 @@ a.searchcard{
 .two-squares{
     display:flex;
 }
+
+.icon-green{
+    color: #50E3C2;
+}
