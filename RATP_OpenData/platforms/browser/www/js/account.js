@@ -51,7 +51,7 @@ class AccountManager {
 
                     // If the current account is the default account, add user accounts to the current server user list
                     chaine +=					'<div class="item-media">' +
-                        '<i class="f7-icons icon-orange">star</i>' +
+                        '<i class="f7-icons icon-jaune">star_fill</i>' +
                         '</div>' +
                         '<div value="' + i + '"  class="item-inner" >' + app._accountList.rows[i].user + '</div>';
                 }else{

@@ -43,7 +43,7 @@ class FavoritesStationsView {
                                                         '</a>' +
                                                     '</div>' +
                                                     '<div class="swipeout-actions-right">' +
-                                                        '<a href="#" id="'+i+'-delete" class="delete action2 bg-red" style="text-align: center;">Supprimer ce favori</a>' +
+                                                        '<a href="#" id="'+i+'-delete" class="delete action2 bg-red">Supprimer ce favori</a>' +
                                                     '</div>'+
                                                 '</div>' +
                                              '</li>';
@@ -51,7 +51,9 @@ class FavoritesStationsView {
                     $$('#list-favorites-stations').html(favoritesStations);
 
                     this.btnDelete = $$('.delete');
-                    //this.btnDelete.click($.proxy(this.deleteFavorite, this));
+                    this.btnDelete.on('click', $.proxy(function() {
+                       favStation.deleteFavorite(id);
+                    }));
                 }
             });
         }
@@ -60,24 +62,7 @@ class FavoritesStationsView {
     deleteFavorite(event){
         myApp.swipeoutClose();
         console.log("Favorites deleted !!!");
-        myDB.transaction(function(transaction) {
-            transaction.executeSql('DELETE FROM account_list WHERE id = '+app._accountList.rows[parseInt(event.srcElement.id)].id, [],
-                function (tx, result) {
-                    // Update view's account list and reload
-                    transaction.executeSql('SELECT * FROM account_list', [],
-                        function (tx, results) {
-                            app._accountList = null;
-                            app._accountList = results;
-                            app._accountManager.displayAccountList();
-                        }, function () {
-                            console.log("!!!!");
-                        }
-                    );
-                },
-                function (error) {
-                    console.log("!!!!");
-                });
-        });
+
     }
 
 }

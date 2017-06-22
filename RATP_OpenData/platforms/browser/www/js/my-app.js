@@ -1,4 +1,4 @@
-var app = null, test = null,  myDB = null;
+var app = null, test = null, favStation= null, myDB = null;
 
 /*var isAndroid = true;//Framework7.prototype.device.android === true;
 var isIos = false;//Framework7.prototype.device.ios === true;
@@ -40,7 +40,7 @@ $$(document).on('deviceready', function() {
     console.log("Device is ready!");
 
     app = new Application();
-    test = new TestView();
+    favStation = new FavoritesStationsView();
     console.log("APP !!",app);
 });
 
