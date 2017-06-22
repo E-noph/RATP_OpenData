@@ -61,5 +61,7 @@ $$(document).on('pageInit', function (e) {
         app.initCloseTo();
     } else if (page.name === 'pathItinerary') {
         app.initPathItinerary();
+    } else if (page.name === 'favorites') {
+        app.initFavorites();
     }
 });

@@ -19,85 +19,15 @@ class Application {
         this._station = new StationView();
         this._closeTo = new CloseToView();
         this._pathItinerary = new PathItineraryView();
+        this._favorites = new FavoritesView();
 
         this._accountList = [];
         this._userList = [];
 
         this._userID = '';
-        this._userBeingID = '';
-        
+
         console.log("++++++++++", this._serverPhonegap);
 
-    }
-
-    /**
-     * Fonction qui appelle notre base de données pour voir si l'utilisateur existe puis si bon résultat sauvegarde
-     * l'utilsateur dans la base du téléphone.
-     */
-    getUser(email, password) {
-        $.ajax({
-            url: this._APIServer + "connect_user.php",
-            data: {email: email, password: password},
-            dataType: "json",
-        }).done($.proxy(function(data){
-
-            let res = data;
-            console.log('getUser response', res);
-
-            if(data.length != 0) {
-                if (email == data[0].mail) {
-                    myDB.transaction(function (transaction) {
-                        //Try to find duplicate credentials in SQLite database
-                        transaction.executeSql('SELECT DISTINCT user FROM account_list', [],
-                            function (tx, results) {
-                                let double = 0;
-                                for (let i = 0; i < results.rows.length; i++) {
-                                    if (email == results.rows[i].user) {
-                                        double = 1;
-                                    }
-                                }
-
-                                // Update account list
-                                if (!double) {
-                                    // Save credentials to SQLite database
-                                    myDB.transaction(function (transaction) {
-                                        transaction.executeSql('INSERT INTO account_list (id, user, isDefault) VALUES (null, "' + data[0].mail + '", 0)', [],
-                                            function (tx, results) {
-                                                console.log("Compte ajouté au gestionnaire de comptes.");
-                                            }, function () {
-                                                console.log("Les identifiants de connexion n'ont pu être sauvegardés.");
-                                            });
-                                    });
-
-                                    // Update app._accountList
-                                    myDB.transaction(function (transaction) {
-                                        transaction.executeSql('SELECT * FROM account_list', [],
-                                            function (tx, results) {
-                                                app._accountList = results;
-                                            }, function () {
-                                                console.log("Erreur SQLite: Impossible de mettre à jour le gestionnaire de comptes.");
-                                            });
-                                    });
-
-                                }
-
-                            }, function () {
-                                console.log("Erreur SQLite : impossible de récupérer la liste des comptes utilisateurs.");
-                            });
-                    });
-
-                    // Initialize application
-                    myApp.closeModal();
-                    this._userID = data.ID;
-                    this._userBeingID = data.ID_wrk_being;
-                }
-            } else {
-                console.log("error log !!");
-                myApp.alert("Erreur d'identification !!!");
-            }
-        }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
-            console.log('CALL API USER FAILED: ', jqXHR, textStatus, errorThrown);
-        });
     }
 
     /**
@@ -142,11 +72,11 @@ class Application {
                     console.log("Tout est good !!!");
 
                 }, function () {
-                    console.log("Error : SQLite TABLE account_list DOES NOT EXIST");
+                    console.log("Error : SQLite TABLE account_list");
                 }
             );
         });
-        //this.showLogin();
+        this.showLogin();
     }
 
     /**
@@ -214,6 +144,78 @@ class Application {
 
     }
 
+
+    /**
+     * Fonction qui appelle notre base de données pour voir si l'utilisateur existe puis si bon résultat sauvegarde
+     * l'utilsateur dans la base du téléphone et nous connecte à l'application.
+     */
+    getUser(email, password) {
+        $.ajax({
+            url: this._APIServer + "connect_user.php",
+            data: {email: email, password: password},
+            dataType: "json",
+        }).done($.proxy(function(data){
+
+            let res = data;
+            console.log('getUser response', res);
+
+            if(data.length != 0) {
+                if (email == data[0].mail) {
+                    myDB.transaction(function (transaction) {
+                        //Try to find duplicate credentials in SQLite database
+                        transaction.executeSql('SELECT DISTINCT user FROM account_list', [],
+                            function (tx, results) {
+                                let double = 0;
+                                for (let i = 0; i < results.rows.length; i++) {
+                                    if (email == results.rows[i].user) {
+                                        double = 1;
+                                    }
+                                }
+
+                                // Update account list
+                                if (!double) {
+                                    // Save credentials to SQLite database
+                                    myDB.transaction(function (transaction) {
+                                        transaction.executeSql('INSERT INTO account_list (id, user, isDefault) VALUES (null, "' + data[0].mail + '", 0)', [],
+                                            function (tx, results) {
+                                                console.log("Compte ajouté au gestionnaire de comptes.");
+                                            }, function () {
+                                                console.log("Les identifiants de connexion n'ont pu être sauvegardés.");
+                                            });
+                                    });
+
+                                    // Update app._accountList
+                                    myDB.transaction(function (transaction) {
+                                        transaction.executeSql('SELECT * FROM account_list', [],
+                                            function (tx, results) {
+                                                app._accountList = results;
+                                            }, function () {
+                                                console.log("Erreur SQLite: Impossible de mettre à jour le gestionnaire de comptes.");
+                                            });
+                                    });
+
+                                }
+
+                            }, function () {
+                                console.log("Erreur SQLite : impossible de récupérer la liste des comptes utilisateurs.");
+                            });
+                    });
+
+                    // Initialize application
+                    myApp.closeModal();
+                    this._userID = data[0].id;
+                    console.log(this._userID);
+                }
+            } else {
+                console.log("error log !!");
+                myApp.alert("Erreur d'identification !!!");
+            }
+        }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
+            console.log('CALL API USER FAILED: ', jqXHR, textStatus, errorThrown);
+        });
+    }
+
+
     /**
      *
      */
@@ -256,5 +258,10 @@ class Application {
         this._pathItinerary.init();
     }
 
-
+    /**
+     *
+     */
+    initFavorites() {
+        this._favorites.init();
+    }
 }
