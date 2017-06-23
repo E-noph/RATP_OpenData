@@ -100,6 +100,7 @@ a.searchcard{
 
 .login-logo{
     max-width:100px;
+    margin: 60px auto 20px auto;
 }
 
 .border-green{
@@ -110,7 +111,17 @@ a.searchcard{
     margin-bottom: 15px;
 }
 
-input#login-screen-username::-webkit-input-placeholder {
+input#login-screen-username::-webkit-input-placeholder, input#login-screen-password::-webkit-input-placeholder  {
     color: #50E3C2;
     font-weight: 200;
+}
+
+.login-title{
+    position: relative;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.2;
+    color: #6d6d72;
+    margin: 35px 15px 10px;
+    text-align: center;
 }
