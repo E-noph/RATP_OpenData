@@ -45,7 +45,7 @@ class CloseToView {
                     position: pos,
                     map: map,
                 });
-                
+
                 map.setCenter(pos);
                 let long = pos.lng.toString().substring(0, 7);
                 let lati = pos.lat.toString().substring(0, 7);
