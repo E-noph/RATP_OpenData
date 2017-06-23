@@ -83,10 +83,34 @@ a.searchcard{
     display:flex;
 }
 
-.icon-green{
+.icon-green, #login-screen-signin{
     color: #50E3C2;
 }
 
 .icon-jaune{
     color: #FFFF00;
+}
+
+.close-button{
+    position: absolute;
+    right:20px;
+    top: 20px;
+    color: #7F7F7F;
+}
+
+.login-logo{
+    max-width:100px;
+}
+
+.border-green{
+    border: 2px solid #50E3C2;
+    width: 100%;
+    margin-right: 15px;
+    color: #50E3C2;
+    margin-bottom: 15px;
+}
+
+input#login-screen-username::-webkit-input-placeholder {
+    color: #50E3C2;
+    font-weight: 200;
 }

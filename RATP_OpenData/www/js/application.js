@@ -130,9 +130,9 @@ class Application {
             let password = $$("#login-screen-password").val();
 
             if (username == "") {
-                myApp.alert("Merci de saisir un mail");
+                myApp.alert("Merci de saisir un mail", "Erreur");
             } else if (password == "") {
-                myApp.alert("Merci de saisir un mot de passe");
+                myApp.alert("Merci de saisir un mot de passe", "Erreur");
             } else {
                 app.getUser(username, password);
             }
