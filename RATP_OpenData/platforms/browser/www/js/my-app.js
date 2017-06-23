@@ -1,4 +1,4 @@
-var app = null, test = null, favStation= null, closeTo = null, myDB = null;
+var app = null, test = null, favStation= null, closeTo = null, subscribe=null, myDB = null;
 
 /*var isAndroid = true;//Framework7.prototype.device.android === true;
 var isIos = false;//Framework7.prototype.device.ios === true;
@@ -42,6 +42,7 @@ $$(document).on('deviceready', function() {
     app = new Application();
     favStation = new FavoritesStationsView();
     closeTo = new CloseToView();
+    subscribe = new SubscribeView();
     console.log("APP !!",app);
 });
 
@@ -67,5 +68,7 @@ $$(document).on('pageInit', function (e) {
         app.initPathItinerary();
     } else if (page.name === 'favorites') {
         app.initFavoritesStations();
+    } else if (page.name === 'subscribe') {
+        app.initSubscribe();
     }
 });

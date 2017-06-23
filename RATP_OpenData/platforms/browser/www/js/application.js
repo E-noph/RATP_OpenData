@@ -20,6 +20,7 @@ class Application {
         this._closeTo = new CloseToView();
         this._pathItinerary = new PathItineraryView();
         this._favorites = new FavoritesStationsView();
+        this._subscribe = new SubscribeView();
 
         this._accountList = [];
         this._userList = [];
@@ -84,7 +85,6 @@ class Application {
      */
     showLogin() {
         myApp.loginScreen();
-        console.log("1");
 
         // Récup account_list
         myDB.transaction(function(transaction) {
@@ -103,8 +103,6 @@ class Application {
                 });
         });
 
-        console.log("2");
-
         // Corresponding usernames autocomplete
         myApp.autocomplete({
             input: '#login-screen-username',
@@ -118,11 +116,7 @@ class Application {
             }
         });
 
-        console.log("3");
-
         $$("#user-autocomplete").addClass("not-empty-state");
-
-        console.log("4");
 
         $$('#login-screen-signin').on('click', $.proxy(function() {
 
@@ -140,7 +134,6 @@ class Application {
             console.log("5");
 
         }));
-        console.log("Fin");
 
     }
 
@@ -263,5 +256,13 @@ class Application {
      */
     initFavoritesStations() {
         this._favorites.init(this._userID);
+    }
+
+    /**
+     *
+     */
+    initSubscribe() {
+        myApp.closeModal();
+        this._subscribe.init();
     }
 }
