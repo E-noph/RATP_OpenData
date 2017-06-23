@@ -56,7 +56,8 @@ a{
 .logo{
     display: flex;
     justify-content: center;
-    max-height: 200px;
+    max-height: 100px;
+    padding-bottom: 50px;
 }
 
 .logo img{
@@ -168,4 +169,10 @@ i.fa {
 
 .grey-text{
     color: #8e8e93;
+}
+
+/*SearchStation*/
+
+.page-content.no-padding-top{
+    padding-top:0;
 }
