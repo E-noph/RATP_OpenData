@@ -5,7 +5,7 @@
 class PathItineraryView {
 
     constructor() {
-        console.log("pathItinerary:constructor()");
+
     }
 
     init() {

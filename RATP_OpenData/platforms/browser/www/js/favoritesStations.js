@@ -5,8 +5,7 @@
 class FavoritesStationsView {
 
     constructor() {
-        console.log("FavoritesStationsView:constructor()");
-        this._Host = 'http://localhost/';
+        this._Host = 'http://192.168.56.1/';
         this._apiURIFavoritesStations = 'server/favoritesStations.php';
         this._apiURIDeleteFavoriteStation = 'server/deleteFavoriteStation.php';
     }
@@ -18,6 +17,10 @@ class FavoritesStationsView {
         this.getFavoritesStation(id);
     }
 
+    /**
+     * Fonction Récupérer les station favorites de l'utilisateur
+     * @param id
+     */
     getFavoritesStation(id) {
 
         if (id == "") {
@@ -67,7 +70,11 @@ class FavoritesStationsView {
         }
     }
 
-
+    /**
+     * Fonction pour supprimer une station favorite d'un utilisateur
+     * @param idFav
+     * @param id
+     */
     deleteFavorite(idFav, id){
         myApp.swipeoutClose();
         console.log(" deleteFavorite:Init ");

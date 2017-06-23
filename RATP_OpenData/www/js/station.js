@@ -3,10 +3,9 @@
 class StationView {
 
     constructor() {
-        console.log("searchStation:constructor()");
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
         this._distance = "50";
-        this._Host = 'http://localhost/';
+        this._Host = 'http://192.168.56.1/';
         this._apiURIstation = 'server/station.php';
         var str = new Date();
         var year = str.getFullYear().toString();

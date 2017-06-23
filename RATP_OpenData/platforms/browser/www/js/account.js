@@ -5,11 +5,11 @@
 class AccountManager {
 
     constructor() {
-        console.log("=============== AccountManager::constructor() ========== ");
+
     }
 
     init() {
-        console.log("=============== AccountManager::init() ========== ");
+        console.log("Account:init()");
 
         this.btnBack = $$('#btn-back-home');
         this.btnBack.click($.proxy(this.restoreSwipePanel, this));
@@ -17,9 +17,10 @@ class AccountManager {
         this.displayAccountList();
     }
 
+    /**
+     *  Affiche les comptes utilisateurs de la base de données mobiles
+     */
     displayAccountList(){
-
-        console.log("=============== AccountManager::displayAccountList() ========== app._accountList",app._accountList );
 
         let chaine = '<ul>',
             i = 0;
@@ -88,9 +89,12 @@ class AccountManager {
         }
     }
 
+    /**
+     *  Fonction pour supprimer un compte utilisateru de la base du téléphone
+     * @param event
+     */
     deleteAccount(event){
         myApp.swipeoutClose();
-        console.log("=============== AccountManager::deleteAccount() ========== ");
         myDB.transaction(function(transaction) {
             transaction.executeSql('DELETE FROM account_list WHERE id = '+app._accountList.rows[parseInt(event.srcElement.id)].id, [],
                 function (tx, result) {
@@ -111,9 +115,12 @@ class AccountManager {
         });
     }
 
+    /**
+     * Fonction pour definir l'utilisateur par défaut
+     * @param event
+     */
     defineFavorite(event){
         myApp.swipeoutClose();
-        console.log("=============== AccountView::defineFavorite() ========== ", parseInt(event.srcElement.id));
         myDB.transaction(function(transaction) {
             transaction.executeSql('UPDATE account_list SET isDefault = 0 WHERE isDefault = 1', [],
                 function (tx, result) {
@@ -138,10 +145,6 @@ class AccountManager {
                     console.log("Error 3 define favorite");
                 });
         });
-    }
-
-    restoreSwipePanel(){
-        if(!myApp.params.swipePanel) myApp.params.swipePanel = "right";
     }
 
 }
