@@ -7,6 +7,9 @@ class CloseToView {
     constructor() {
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
         this._distance = "300&";
+
+        this._stationCloseToList = [];
+
         console.log("closeTo:constructor()");
     }
 
@@ -17,6 +20,9 @@ class CloseToView {
         this.initMap();
     }
 
+    /**
+     * Fonction d'initiation de la géolocalisation sur map Google
+     */
     initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: -34.397, lng: 150.644},
@@ -26,7 +32,6 @@ class CloseToView {
             draggable : false,
             disableDoubleClickZoom : true,
         });
-        var infoWindow = new google.maps.InfoWindow({map: map});
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
@@ -36,8 +41,11 @@ class CloseToView {
                     lng: position.coords.longitude
                 };
 
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('Location found.');
+                var marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                });
+                
                 map.setCenter(pos);
                 let long = pos.lng.toString().substring(0, 7);
                 let lati = pos.lat.toString().substring(0, 7);
@@ -53,6 +61,12 @@ class CloseToView {
         }
     }
 
+    /**
+     * Fonction erreur sur la géolocalisation de la map Google
+     * @param browserHasGeolocation
+     * @param infoWindow
+     * @param pos
+     */
     handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
@@ -67,7 +81,7 @@ class CloseToView {
     callAPICloseTo(coords) {
         console.log(this._APINativia + "coord/"+coords+"/stop_areas?distance="+this._distance);
         $.ajax({
-            url: this._APINativia + "coord/"+coords+"/departures?distance="+this._distance,
+            url: this._APINativia + "coord/"+coords+"/departures?distance="+this._distance+"count=25&",
         }).done($.proxy(function(data){
 
             let res = data;
@@ -82,17 +96,31 @@ class CloseToView {
                         let codeStation = data.departures[i].stop_point.stop_area.id;
                         codeStation = codeStation.split(":");
 
-                        stationClose += '<li class="swipeout">' +
-                            '<div class="swipeout-content item-content">' +
-                            '<div class="item-inner">' +
-                            '<a href="nextTrains.html?codeStation=' + codeStation[3] + '=' + data.departures[i].stop_point.stop_area.name + '">' +
-                            '<div class="item-title">' + data.departures[i].stop_point.stop_area.name + '</div>' +
-                            '</a>' +
-                            '</div>' +
-                            '</div>' +
-                            '</li>';
+                        this._stationCloseToList.push(codeStation[3]+"|"+data.departures[i].stop_point.stop_area.name);
+                        var codeStationArray = closeTo.cleanArray(this._stationCloseToList);
+
                     }
                 }
+
+                console.log(codeStationArray);
+
+                for (var i = 0; i < codeStationArray.length; i++) {
+                    let data = codeStationArray[i].split("|");
+                    let codeStation = data[0];
+                    let nameStation = data[1];
+
+                    stationClose += '<li class="swipeout">' +
+                        '<div class="swipeout-content item-content">' +
+                        '<div class="item-inner">' +
+                        '<a href="nextTrains.html?codeStation=' + codeStation + '=' + nameStation + '">' +
+                        '<div class="item-title">' + nameStation + '</div>' +
+                        '</a>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>';
+
+                }
+
                 $$('#list-closeTo').html(stationClose);
 
             } else {
@@ -105,4 +133,21 @@ class CloseToView {
             console.log('CALL API CLOSETO FAILED: ', jqXHR, textStatus, errorThrown);
         });
     }
+
+    /**
+     * Fonction pour retirer les duplicata d'un array
+     * @param array
+     * @returns {Array}
+     */
+    cleanArray(array) {
+        var i, j, len = array.length, out = [], obj = {};
+        for (i = 0; i < len; i++) {
+            obj[array[i]] = 0;
+        }
+        for (j in obj) {
+            out.push(j);
+        }
+        return out;
+    }
+
 }
