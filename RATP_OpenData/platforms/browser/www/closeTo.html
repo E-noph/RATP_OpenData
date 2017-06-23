@@ -4,8 +4,9 @@
         <div class="navbar">
             <div class="navbar-inner">
                 <div class="left">
-                    <a href="#" class="back link" id="btn-back-home">
-                        <i class="icon icon-arrow-left11"></i>
+                    <a href="#" class="back link">
+                        <i class="f7-icons icon-back-green">chevron-left</i>
+                        <span>Retour</span>
                     </a>
                 </div>
                 <div class="center sliding i18n">PAGE closeTo</div>
@@ -21,10 +22,14 @@
             </div>
         </div>
 
-        <div class="page-content" id="closeTo-page-content">
+        <div class="page-content white-bg" id="closeTo-page-content">
             <div class="map" id="map" style="height: 70%"></div>
-            <p>Station de Métro à proximité :</p>
-            <div class="list-block infinite-scroll" data-distance="100"><ul id="list-closeTo"></ul></div>
+            <div class="block-closeTo">
+                <p class="title">Station de Métro à proximité :</p>
+                <div class="list-block infinite-scroll" data-distance="100">
+                    <ul id="list-closeTo"></ul>
+                </div>
+            </div>
         </div>
 
     </div>

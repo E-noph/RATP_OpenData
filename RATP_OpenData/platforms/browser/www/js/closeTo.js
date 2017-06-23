@@ -109,15 +109,19 @@ class CloseToView {
                     let codeStation = data[0];
                     let nameStation = data[1];
 
-                    stationClose += '<li class="swipeout">' +
-                        '<div class="swipeout-content item-content">' +
+                    stationClose += 
+                        '<a class="grey-text" href="nextTrains.html?codeStation=' + codeStation + '=' + nameStation + '">' +
+                        '<li class="item-content">' +
+                        '<div class="item-media"><i class="fa fa-map-marker" aria-hidden="true"></i></div>' +
                         '<div class="item-inner">' +
-                        '<a href="nextTrains.html?codeStation=' + codeStation + '=' + nameStation + '">' +
+                        
                         '<div class="item-title">' + nameStation + '</div>' +
-                        '</a>' +
+                        
+                        '<div class="item-after"><i class="f7-icons">chevron-right</i></div>' +
                         '</div>' +
                         '</div>' +
-                        '</li>';
+                        '</li>'+
+                        '</a>' ;
 
                 }
 

@@ -10,6 +10,11 @@
    See https://github.com/apache/cordova-plugin-statusbar
 */
 
+i.icon-back-green{
+    font-weight: 600;
+    line-height: 2em;
+}
+
 .statusbar-overlay {
     background: #000000;
 }
@@ -40,6 +45,10 @@
     color: #B6B6B6;
     font-size:1.5em;
     align-self: flex-end;
+}
+
+a{
+    color: #50E3C2;
 }
 
 /*LOGO*/
@@ -91,6 +100,8 @@ a.searchcard{
     color: #FFFF00;
 }
 
+/*Login*/
+
 .close-button{
     position: absolute;
     right:20px;
@@ -124,4 +135,37 @@ input#login-screen-username::-webkit-input-placeholder, input#login-screen-passw
     color: #6d6d72;
     margin: 35px 15px 10px;
     text-align: center;
+}
+
+/*CloseTo*/
+
+.white-bg{
+    background: #fff;
+}
+
+.block-closeTo{
+    background: #fff;
+}
+
+.block-closeTo .title{
+    background: #50E3C2;
+    color: #fff;
+    padding: 20px;
+    font-size: 1.1em;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+i.fa {
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
+
+.list-block{
+    margin: 0;
+}
+
+.grey-text{
+    color: #8e8e93;
 }
