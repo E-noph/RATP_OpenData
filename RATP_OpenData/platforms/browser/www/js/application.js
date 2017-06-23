@@ -11,7 +11,7 @@ class Application {
         this._serverPhonegap = location.href.split(':')[1].substr(2);
         this._user = "";
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
-        this._APIServer = 'http://localhost/server/'
+        this._APIServer = 'http://localhost/server/';
 
         // views
         this._test = new TestView();
@@ -130,9 +130,9 @@ class Application {
             let password = $$("#login-screen-password").val();
 
             if (username == "") {
-                myApp.alert("Merci de saisir un mail");
+                myApp.alert("Merci de saisir un mail", "Erreur");
             } else if (password == "") {
-                myApp.alert("Merci de saisir un mot de passe");
+                myApp.alert("Merci de saisir un mot de passe", "Erreur");
             } else {
                 app.getUser(username, password);
             }

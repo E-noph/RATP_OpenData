@@ -1,4 +1,4 @@
-var app = null, test = null,  myDB = null;
+var app = null, test = null, favStation= null, closeTo = null, myDB = null;
 
 /*var isAndroid = true;//Framework7.prototype.device.android === true;
 var isIos = false;//Framework7.prototype.device.ios === true;
@@ -17,7 +17,6 @@ if (isAndroid) {
 // Initialize app
 var myApp = new Framework7({
     debug: true,
-    swipePanel: 'left',
     swipePanelThreshold: 5,
     smartSelectOpenIn:'picker',
 });
@@ -38,9 +37,11 @@ var mainView = myApp.addView('.view-main', {
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
+    console.log("navigator.geolocation works well");
 
     app = new Application();
-    test = new TestView();
+    favStation = new FavoritesStationsView();
+    closeTo = new CloseToView();
     console.log("APP !!",app);
 });
 

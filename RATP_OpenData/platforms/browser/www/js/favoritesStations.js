@@ -7,7 +7,8 @@ class FavoritesStationsView {
     constructor() {
         console.log("FavoritesStationsView:constructor()");
         this._Host = 'http://localhost/';
-        this._apiURIFavoritesStation = 'server/favoritesStations.php';
+        this._apiURIFavoritesStations = 'server/favoritesStations.php';
+        this._apiURIDeleteFavoriteStation = 'server/deleteFavoriteStation.php';
     }
 
     init(id) {
@@ -25,7 +26,7 @@ class FavoritesStationsView {
             $$('#list-favorites-stations').html(messageConnexion);
         } else {
             $.ajax({
-                url: this._Host + this._apiURIFavoritesStation,
+                url: this._Host + this._apiURIFavoritesStations,
                 data : {id : id},
                 dataType : "json",
                 success : function(data)
@@ -33,50 +34,52 @@ class FavoritesStationsView {
                     var favoritesStations= "";
 
                     console.log('getAPIFavoritesStations response', data);
-
-                    for (var i = 0; i < data.length; i++) {
-                        favoritesStations += '<li class="swipeout">'+
-                                                '<div class="swipeout-content item-content">' +
-                                                    '<div class="item-inner">' +
-                                                        '<a href="nextTrains.html?codeStation='+data[i].stop_area+'='+data[i].name+'">' +
-                                                            '<div class="item-title">'+data[i].name+'</div>' +
-                                                        '</a>' +
+                    if (data.length != 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            favoritesStations += '<li class="swipeout">'+
+                                                    '<div class="swipeout-content item-content">' +
+                                                        '<div class="item-inner">' +
+                                                            '<a href="nextTrains.html?codeStation='+data[i].stop_area+'='+data[i].name+'">' +
+                                                                '<div class="item-title">'+data[i].name+'</div>' +
+                                                            '</a>' +
+                                                        '</div>' +
                                                     '</div>' +
                                                     '<div class="swipeout-actions-right">' +
-                                                        '<a href="#" id="'+i+'-delete" class="delete action2 bg-red" style="text-align: center;">Supprimer ce favori</a>' +
+                                                        '<a href="#" id="'+data[i].idPoint+'" class="delete action1 bg-red"><i class="f7-icons">trash</i></a>' +
                                                     '</div>'+
-                                                '</div>' +
-                                             '</li>';
-                    }
-                    $$('#list-favorites-stations').html(favoritesStations);
+                                                 '</li>';
+                        }
+                        $$('#list-favorites-stations').html(favoritesStations);
 
-                    this.btnDelete = $$('.delete');
-                    //this.btnDelete.click($.proxy(this.deleteFavorite, this));
+
+                        $$('.delete').on('click', $.proxy(function(e) {
+                            var el= e.target||event.srcElement;
+                            console.log(el.id);
+                            setTimeout(favStation.deleteFavorite(el.id, id),1000);
+                        }));
+                    } else {
+                        favoritesStations += "<p>Vous n'avez pas de favoris</p>";
+
+                        $$('#list-favorites-stations').html(favoritesStations);
+                    }
                 }
             });
         }
     }
 
-    deleteFavorite(event){
+
+    deleteFavorite(idFav, id){
         myApp.swipeoutClose();
-        console.log("Favorites deleted !!!");
-        myDB.transaction(function(transaction) {
-            transaction.executeSql('DELETE FROM account_list WHERE id = '+app._accountList.rows[parseInt(event.srcElement.id)].id, [],
-                function (tx, result) {
-                    // Update view's account list and reload
-                    transaction.executeSql('SELECT * FROM account_list', [],
-                        function (tx, results) {
-                            app._accountList = null;
-                            app._accountList = results;
-                            app._accountManager.displayAccountList();
-                        }, function () {
-                            console.log("!!!!");
-                        }
-                    );
-                },
-                function (error) {
-                    console.log("!!!!");
-                });
+        console.log(" deleteFavorite:Init ");
+        console.log(idFav);
+
+        $.ajax({
+            url: this._Host + this._apiURIDeleteFavoriteStation,
+            data: 'idFav=' + idFav,
+            success : function(data) {
+                console.log("refds");
+                favStation.getFavoritesStation(id);
+            }
         });
     }
 

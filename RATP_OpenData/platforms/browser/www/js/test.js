@@ -21,22 +21,6 @@ class TestView {
         this.callAPIItineraire("%3AOIF%3ASA%3A59300","%3AOIF%3ASA%3A59522","20170615T164106&");
     }
 
-    /**
-     * Fonction qui appelle l'API nativia pour récupérer les datas des stations à proximité
-     * @param coords
-     */
-    callAPICloseTo(coords) {
-        $.ajax({
-            url: this._APINativia + "coords/"+coords+"/lines?distance="+this._distance,
-        }).done($.proxy(function(data){
-
-            let res = data;
-            console.log('getAPIcloseTo response', res);
-
-        }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
-            console.log('CALL API CLOSETO FAILED: ', jqXHR, textStatus, errorThrown);
-        });
-    }
 
     /**
      * Fonction qui appelle l'API navitia pour itinéraire d'un parcours demandé
