@@ -51,11 +51,21 @@ class SubscribeView {
         console.log(username, mail, password);
         $.ajax({
             url: this._Host + this._apiURIsubscribe,
-            dataType : "json",
+            data : { username : username, mail : mail, password : password },
             success : function(data)
             {
                 console.log('getAPIsubscribe response', data);
 
+                if (data == "Votre compte a été crée") {
+                    myApp.alert(data, "Bienvenue chez ParisGo");
+                    mainView.router.load({
+                        url: 'index.html',
+                    });
+                    myApp.loginScreen();
+
+                } else {
+                    myApp.alert(data, "Erreur");
+                }
             }
         });
     }
