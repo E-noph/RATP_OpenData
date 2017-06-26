@@ -19,6 +19,7 @@ var myApp = new Framework7({
     debug: true,
     swipePanelThreshold: 5,
     smartSelectOpenIn:'picker',
+    dynamicNavbar: true,
 });
 myApp.debug = true;
 

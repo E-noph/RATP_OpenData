@@ -5,7 +5,7 @@ class StationView {
     constructor() {
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
         this._distance = "50";
-        this._Host = 'http://localhost/';
+        this._Host = 'http://192.168.56.1/';
         this._apiURIstation = 'server/station.php';
         var str = new Date();
         var year = str.getFullYear().toString();
@@ -118,7 +118,7 @@ class StationView {
 
             var metroTab = {};
             var affTab = {};
-            var result = '<div class="content-block-title">' + data.departures[0].stop_point.label + '</div><div class="list-block media-list"><ul>';
+            var result = '<div class="content-block-title">' + nameStation + '</div><div class="list-block media-list"><ul>';
             
             // Boucle pour récup les infos des stations
             for (var i = 0; i < data.departures.length; i++) {
