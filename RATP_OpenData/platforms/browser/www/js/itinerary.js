@@ -162,7 +162,7 @@ class PathItineraryView {
                     itemStationSearchBar += '<p>Je prends le '+ data.journeys[i].sections[j].display_informations.commercial_mode +' '
 					+ data.journeys[i].sections[j].display_informations.code +' en partant de '+ data.journeys[i].sections[j].from.name +
 					' en direction de  ' + data.journeys[i].sections[j].display_informations.direction + ' jusqu\'a ' 
-					+data.journeys[i].sections[j].to.name+ ' à '+ heure+ ' en passant par '+arret+ '.</p>';
+					+data.journeys[i].sections[j].to.name+ ' dans '+(data.journeys[i].sections[j].stop_date_times.length-1)+' arrets à '+ heure+ ' en passant par '+arret+ '.</p>';
 					itemStationSearchBar += '<p>Durée : '+ data.journeys[i].sections[j].duration +' secondes.</p>';
                 }
                 else{
