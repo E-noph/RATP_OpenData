@@ -7,8 +7,9 @@ class PathItineraryView {
     constructor() {
         console.log("pathItinerary:constructor()");
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
-        this._Host = 'http://192.168.56.1/';
+        this._Host = 'http://localhost:8080/';
         this._apiURIstation = 'server/station.php';
+        this._apiURIitinerary = 'server/itinerary.php';
     }
 
     init() {
@@ -78,17 +79,45 @@ class PathItineraryView {
             }
         });
         $$('#searchItinerary-go').on('click', $.proxy(function() {
+            var stationFormCode = "";
+            var stationToCode = "";
+
             let stationFrom = $$("#station-from").val();
             let stationTo = $$("#station-to").val();
+            
+            // Récupération du stop-area pour la station de départ
+            $.ajax({
+                url: this._Host + this._apiURIitinerary,
+                data : {station : stationFrom},
+                success : function(data)
+                {
+                    console.log('getAPIitinerary response', data);
+                    stationFormCode = data;
+                }
+            });
+
+            // Récupération du stop-area pour la station d'arrivée
+            $.ajax({
+                url: this._Host + this._apiURIitinerary,
+                data : {station : stationTo},
+                success : function(data)
+                {
+                    console.log('getAPIitinerary response', data);
+                    stationToCode = data;         
+                }
+            });
 
             mainView.router.load({
                 url: 'pathItinerary.html',
                 query : {
-                    stationFrom,
-                    stationTo,
+                    stationFormCode,
+                    stationToCode,
                 }
             });
-        }));
+
+        }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
+            console.log('CALL API ITINERAIRE FAILED: ', jqXHR, textStatus, errorThrown);
+        });
     }
 
     /**
@@ -98,7 +127,7 @@ class PathItineraryView {
      */
     initResultItinerary (codeStationFrom, codeStationTo) {
         console.log("initResultItinerary:::"+codeStationFrom+","+codeStationTo);
-        this.callAPIItineraire("%3AOIF%3ASA%3A8738400","%3AOIF%3ASA%3A59300","20170623T093135");
+        this.callAPIItineraire(codeStationFrom,codeStationTo,"20170623T093135");
     }
 
     /**
@@ -109,7 +138,7 @@ class PathItineraryView {
      */
     callAPIItineraire(codeStationFrom, codeStationTo, dateTime) {
         $.ajax({
-            url: this._APINativia + "journeys?from=stop_area"+codeStationFrom+"&to=stop_area"+codeStationTo+"&datetime="+dateTime,
+            url: this._APINativia + "journeys?from=stop_area%3AOIF%3ASA%3A"+codeStationFrom+"&to=stop_area%3AOIF%3ASA%3A"+codeStationTo+"&datetime="+dateTime,
         }).done($.proxy(function(data){
             var itemStationSearchBar = "";
 

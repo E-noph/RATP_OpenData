@@ -11,7 +11,7 @@ class Application {
         this._serverPhonegap = location.href.split(':')[1].substr(2);
         this._user = "";
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
-        this._APIServer = 'http://192.168.56.1/server/';
+        this._APIServer = 'http://localhost:8080/server/';
 
         // views
         this._test = new TestView();
@@ -248,7 +248,7 @@ class Application {
      *
      */
     initResultItinerary(query) {
-        this._pathItinerary.initResultItinerary(query.stationFrom, query.stationTo);
+        this._pathItinerary.initResultItinerary(query.stationFormCode, query.stationToCode);
     }
 
     /**
