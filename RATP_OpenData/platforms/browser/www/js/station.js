@@ -5,7 +5,7 @@ class StationView {
     constructor() {
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
         this._distance = "50";
-        this._Host = 'http://192.168.56.1/';
+        this._Host = 'http://localhost/';
         this._apiURIstation = 'server/station.php';
         var str = new Date();
         var year = str.getFullYear().toString();
@@ -95,7 +95,7 @@ class StationView {
      * @param dateTime
      */
     callAPIStation(codeStation, dateTime, nameStation) {
-        var result = "";
+        
 
         $.ajax({
             url: this._APINativia + "stop_areas/stop_area%3AOIF%3ASA%3A"+codeStation+"/departures?from_datetime="+dateTime+"count=100&",
@@ -118,6 +118,8 @@ class StationView {
 
             var metroTab = {};
             var affTab = {};
+            var result = '<div class="content-block-title">' + data.departures[0].stop_point.label + '</div><div class="list-block media-list"><ul>';
+            
             // Boucle pour récup les infos des stations
             for (var i = 0; i < data.departures.length; i++) {
                 if("Métro".localeCompare(data.departures[i].display_informations.commercial_mode)==0) {
@@ -141,8 +143,7 @@ class StationView {
                             var arrivalTime = nextTrain.getTime() - timeNow.getTime();
                             arrivalTime = arrivalTime / 60000;
                             arrivalTime = Math.round(arrivalTime);
-                            affTab[strFullInfo] += '<p>' + 'Arrêt actuel : ' + data.departures[i].stop_point.label + ', Métro n°' + data.departures[i].display_informations.code +
-                            ' à destination de ' + data.departures[i].display_informations.direction + ', le prochain est dans ' + arrivalTime + ' min' + '</p></br>';
+                            affTab[strFullInfo] += '<div class="next">' + arrivalTime + '</div></div></div></li>';
                             metroTab[strFullInfo]++;
                         }
                     }
@@ -164,8 +165,8 @@ class StationView {
                         var arrivalTime = nextTrain.getTime() - timeNow.getTime();
                         arrivalTime = arrivalTime / 60000;
                         arrivalTime = Math.round(arrivalTime);
-                        affTab[strFullInfo] += '<p>' + 'Arrêt actuel : ' + data.departures[i].stop_point.label + ', Métro n°' + data.departures[i].display_informations.code +
-                        ' à destination de ' + data.departures[i].display_informations.direction + ', le prochain est dans ' + arrivalTime + ' min' + '</p></br>';
+                        affTab[strFullInfo] += '<li><div class="item-content"><div class="item-media"><span class="metro ligne' + data.departures[i].display_informations.code + '">Ligne ' + data.departures[i].display_informations.code +
+                            '</span></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + data.departures[i].display_informations.direction + '</div></div><div class="item-subtitle">' + data.departures[i].stop_point.label + '</div></div><div class="item-right"><div class="now">' + arrivalTime + '</div><div class="now time"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>';
                         metroTab[strFullInfo]++;
                     }
                 }
@@ -185,7 +186,9 @@ class StationView {
                 result += affTab[newTab[k]];
             }
 
-            console.log(newTab);
+            result += '</ul></div>';
+
+            console.log(affTab);
             
 
             $$('#next-station-page-content').html(result);
