@@ -1,4 +1,4 @@
-var app = null, test = null, favStation= null, closeTo = null, subscribe=null, myDB = null;
+var app = null, test = null, favStation= null, closeTo = null, subscribe=null, station=null, myDB = null;
 
 /*var isAndroid = true;//Framework7.prototype.device.android === true;
 var isIos = false;//Framework7.prototype.device.ios === true;
@@ -44,6 +44,7 @@ $$(document).on('deviceready', function() {
     favStation = new FavoritesStationsView();
     closeTo = new CloseToView();
     subscribe = new SubscribeView();
+    station = new StationView();
     console.log("APP !!",app);
 });
 

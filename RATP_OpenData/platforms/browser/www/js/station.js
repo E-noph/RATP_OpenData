@@ -7,6 +7,9 @@ class StationView {
         this._distance = "50";
         this._Host = 'http://192.168.56.1/';
         this._apiURIstation = 'server/station.php';
+        this._apiURIaddStationFav = 'server/addFavoritesStations.php';
+        this._apiURIDeleteFavoriteStation = 'server/deleteFavoriteStation.php';
+
         var str = new Date();
         var year = str.getFullYear().toString();
         var month = str.getMonth() + 1;
@@ -79,13 +82,87 @@ class StationView {
      * @param codeStation
      * @param nameStation
      */
-    initDataTrains(codeStation, nameStation) {
+    initDataTrains(codeStation, nameStation, id) {
         console.log("nextTrains:Init()")
         console.log(codeStation);
         console.log(nameStation);
         console.log(this._dateAPI);
+        console.log(id);
 
-        this.callAPIStation(codeStation, this._dateAPI, nameStation);
+        if (id != "") {
+            this.FavStation(id, codeStation, this._dateAPI, nameStation);
+        } else {
+            this.callAPIStation(codeStation, this._dateAPI, nameStation);
+        }
+    }
+
+    /**
+     * Fonction pour savoir si la station qu'on change est une de nos stations favorites
+     * @param userID
+     * @param codeStation
+     * @param date
+     * @param nameStation
+     * @constructor
+     */
+    FavStation(userID, codeStation, date, nameStation) {
+        var res = "";
+        var idFav = "";
+        var bool = false;
+
+        $.ajax({
+            url: this._Host + this._apiURIaddStationFav,
+            data : {userID : userID, codeStation : codeStation},
+            success : function(data)
+            {
+                console.log('getAPIstationAddFav response', data);
+                data = data.split("+");
+                res = data[0];
+                idFav = data[1];
+                if (res == "station favori") {
+                    bool = true;
+                    console.log("on est la !");
+                    $$('#favorite-station').html('<i class="f7-icons icon-green">star_fill</i>');
+                    station.callAPIStation(codeStation, date, nameStation);
+
+                    $$('#favorite-station').on('click', $.proxy(function() {
+                        station.switchFavStation(userID, codeStation, date, nameStation, bool, idFav);
+                    }));
+
+                } else {
+                    bool = false;
+                    $$('#favorite-station').html('<i class="f7-icons icon-green">star</i>');
+                    station.callAPIStation(codeStation, date, nameStation);
+
+                    $$('#favorite-station').on('click', $.proxy(function() {
+                        station.switchFavStation(userID, codeStation, date, nameStation, bool, idFav);
+                    }));
+                }
+            }
+        });
+    }
+
+    switchFavStation(userID, codeStation, date, nameStation, bool, idFav) {
+
+        if (bool) {
+                $.ajax({
+                    url: this._Host + this._apiURIDeleteFavoriteStation,
+                    data: 'idFav=' + idFav,
+                    success : function(data) {
+                        console.log("Suppression du favori");
+                        station.FavStation(userID, codeStation, date, nameStation);
+                    }
+                });
+        }
+        else {
+            $.ajax({
+                url: this._Host + this._apiURIaddStationFav,
+                data: { userID : userID, pointID : idFav},
+                success : function(data) {
+                    console.log("Ajout du favori");
+                    station.FavStation(userID, codeStation, date, nameStation);
+                }
+            });
+        }
     }
 
 
