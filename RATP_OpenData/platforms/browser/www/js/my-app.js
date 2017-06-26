@@ -65,9 +65,11 @@ $$(document).on('pageInit', function (e) {
     } else if (page.name === 'closeTo') {
         app.initCloseTo();
     } else if (page.name === 'pathItinerary') {
-        app.initPathItinerary();
+        app.initResultItinerary(page.query);
     } else if (page.name === 'favorites') {
         app.initFavoritesStations();
+    } else if (page.name === 'searchItinerary') {
+        app.initSearchItinerary();
     } else if (page.name === 'subscribe') {
         app.initSubscribe();
     }

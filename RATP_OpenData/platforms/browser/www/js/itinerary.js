@@ -7,14 +7,98 @@ class PathItineraryView {
     constructor() {
         console.log("pathItinerary:constructor()");
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
+        this._Host = 'http://192.168.56.1/';
+        this._apiURIstation = 'server/station.php';
     }
 
     init() {
         console.log("pathItinerary:init()");
         console.log();
 
-        this.callAPIItineraire("%3AOIF%3ASA%3A8738400","%3AOIF%3ASA%3A59300","20170623T093135");
+        this.getRoutePoint();
+    }
 
+    /**
+     * Fonction pour récuperer les stations que l'on veut pour notre itinéaire
+     */
+    getRoutePoint() {
+        $.ajax({
+            url: this._Host + this._apiURIstation,
+            dataType : "json",
+            success : function(data)
+            {
+                var StationSearchBar = [];
+
+                console.log('getAPIstation response', data);
+                console.log(data[0].name);
+
+                for (var i = 0; i < data.length; i++) {
+                    StationSearchBar.push(data[i].name);
+                }
+
+                // autocomplete pour le départ d'une station
+                myApp.autocomplete({
+                    input: '#station-from',
+                    openIn: 'dropdown',
+                    autoFocus : true,
+                    source: function (autocomplete, query, render) {
+                        var results = [];
+                        if (query.length === 0) {
+                            render(results);
+                            return;
+                        }
+                        // Find matched items
+                        for (var i = 0; i < StationSearchBar.length; i++) {
+                            if (StationSearchBar[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(StationSearchBar[i]);
+                        }
+                        // Render items by passing array with result items
+                        render(results);
+                    }
+                });
+
+                //autocomplete pour l'arrivée à une station
+                myApp.autocomplete({
+                    input: '#station-to',
+                    openIn: 'dropdown',
+                    autoFocus : true,
+                    source: function (autocomplete, query, render) {
+                        var results = [];
+                        if (query.length === 0) {
+                            render(results);
+                            return;
+                        }
+                        // Find matched items
+                        for (var i = 0; i < StationSearchBar.length; i++) {
+                            if (StationSearchBar[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(StationSearchBar[i]);
+                        }
+                        // Render items by passing array with result items
+                        render(results);
+                    }
+                });
+            }
+        });
+        $$('#searchItinerary-go').on('click', $.proxy(function() {
+            let stationFrom = $$("#station-from").val();
+            let stationTo = $$("#station-to").val();
+
+            mainView.router.load({
+                url: 'pathItinerary.html',
+                query : {
+                    stationFrom,
+                    stationTo,
+                }
+            });
+        }));
+    }
+
+    /**
+     * Init de la page concernant le résultat pour l'itinéraire
+     * @param codeStationFrom
+     * @param codeStationTo
+     */
+    initResultItinerary (codeStationFrom, codeStationTo) {
+        console.log("initResultItinerary:::"+codeStationFrom+","+codeStationTo);
+        this.callAPIItineraire("%3AOIF%3ASA%3A8738400","%3AOIF%3ASA%3A59300","20170623T093135");
     }
 
     /**
@@ -67,14 +151,19 @@ class PathItineraryView {
                      */if(data.journeys[i].sections[j].stop_date_times !== undefined)
                 {
                     var arret = "";
-                    for(var l = 0; l < data.journeys[i].sections[j].stop_date_times.length - 1; l++)
+                    for(var l = 1; l < data.journeys[i].sections[j].stop_date_times.length - 1; l++)
                     {
                         arret += data.journeys[i].sections[j].stop_date_times[l].stop_point.name+", ";
                     }
 
                     arret = arret.substring(0,arret.length - 2);
+					
 
-                    itemStationSearchBar += '<p>Je pars de '+ data.journeys[i].sections[j].from.name +' en direction de  ' + data.journeys[i].sections[j].to.name + ' à '+ heure+ ' en passant par '+arret+ '</p>';
+                    itemStationSearchBar += '<p>Je prends le '+ data.journeys[i].sections[j].display_informations.commercial_mode +' '
+					+ data.journeys[i].sections[j].display_informations.code +' en partant de '+ data.journeys[i].sections[j].from.name +
+					' en direction de  ' + data.journeys[i].sections[j].display_informations.direction + ' jusqu\'a ' 
+					+data.journeys[i].sections[j].to.name+ ' à '+ heure+ ' en passant par '+arret+ '.</p>';
+					itemStationSearchBar += '<p>Durée : '+ data.journeys[i].sections[j].duration +' secondes.</p>';
                 }
                 else{
                     if(data.journeys[i].sections[j].duration !== 0)
@@ -82,10 +171,10 @@ class PathItineraryView {
                         if(data.journeys[i].sections[j].type=="transfer" || data.journeys[i].sections[j].type=="waiting")
                         {
                             if(data.journeys[i].sections[j].type=="transfer"){
-                                itemStationSearchBar += '<p>Je marche pendant '+data.journeys[i].sections[j].duration+ ' secondes</p>';
+                                itemStationSearchBar += '<p>Je marche pendant '+data.journeys[i].sections[j].duration+ ' secondes.</p>';
                             }
                             if(data.journeys[i].sections[j].type=="waiting"){
-                                itemStationSearchBar += '<p>J\'attends pendant '+data.journeys[i].sections[j].duration+ ' secondes</p>';
+                                itemStationSearchBar += '<p>J\'attends pendant '+data.journeys[i].sections[j].duration+ ' secondes.</p>';
                             }
                         }
                         else{

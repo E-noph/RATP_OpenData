@@ -247,7 +247,14 @@ class Application {
     /**
      *
      */
-    initPathItinerary() {
+    initResultItinerary(query) {
+        this._pathItinerary.initResultItinerary(query.stationFrom, query.stationTo);
+    }
+
+    /**
+     *
+     */
+    initSearchItinerary() {
         this._pathItinerary.init();
     }
 
