@@ -67,14 +67,19 @@ class PathItineraryView {
                      */if(data.journeys[i].sections[j].stop_date_times !== undefined)
                 {
                     var arret = "";
-                    for(var l = 0; l < data.journeys[i].sections[j].stop_date_times.length - 1; l++)
+                    for(var l = 1; l < data.journeys[i].sections[j].stop_date_times.length - 1; l++)
                     {
                         arret += data.journeys[i].sections[j].stop_date_times[l].stop_point.name+", ";
                     }
 
                     arret = arret.substring(0,arret.length - 2);
+					
 
-                    itemStationSearchBar += '<p>Je pars de '+ data.journeys[i].sections[j].from.name +' en direction de  ' + data.journeys[i].sections[j].to.name + ' à '+ heure+ ' en passant par '+arret+ '</p>';
+                    itemStationSearchBar += '<p>Je prends le '+ data.journeys[i].sections[j].display_informations.commercial_mode +' '
+					+ data.journeys[i].sections[j].display_informations.code +' en partant de '+ data.journeys[i].sections[j].from.name +
+					' en direction de  ' + data.journeys[i].sections[j].display_informations.direction + ' jusqu\'a ' 
+					+data.journeys[i].sections[j].to.name+ ' à '+ heure+ ' en passant par '+arret+ '.</p>';
+					itemStationSearchBar += '<p>Durée : '+ data.journeys[i].sections[j].duration +' secondes.</p>';
                 }
                 else{
                     if(data.journeys[i].sections[j].duration !== 0)
@@ -82,10 +87,10 @@ class PathItineraryView {
                         if(data.journeys[i].sections[j].type=="transfer" || data.journeys[i].sections[j].type=="waiting")
                         {
                             if(data.journeys[i].sections[j].type=="transfer"){
-                                itemStationSearchBar += '<p>Je marche pendant '+data.journeys[i].sections[j].duration+ ' secondes</p>';
+                                itemStationSearchBar += '<p>Je marche pendant '+data.journeys[i].sections[j].duration+ ' secondes.</p>';
                             }
                             if(data.journeys[i].sections[j].type=="waiting"){
-                                itemStationSearchBar += '<p>J\'attends pendant '+data.journeys[i].sections[j].duration+ ' secondes</p>';
+                                itemStationSearchBar += '<p>J\'attends pendant '+data.journeys[i].sections[j].duration+ ' secondes.</p>';
                             }
                         }
                         else{
