@@ -13,8 +13,35 @@ class PathItineraryView {
         console.log("pathItinerary:init()");
         console.log();
 
-        this.callAPIItineraire("%3AOIF%3ASA%3A8738400","%3AOIF%3ASA%3A59300","20170623T093135");
+        this.getRoutePoint();
+    }
 
+    /**
+     * Fonction pour récuperer les stations que l'on veut pour notre itinéaire
+     */
+    getRoutePoint() {
+        $$('#searchItinerary-go').on('click', $.proxy(function() {
+            let stationFrom = $$("#station-from").val();
+            let stationTo = $$("#station-to").val();
+
+            mainView.router.load({
+                url: 'pathItinerary.html',
+                query : {
+                    stationFrom,
+                    stationTo,
+                }
+            });
+        }));
+    }
+
+    /**
+     * Init de la page concernant le résultat pour l'itinéraire
+     * @param codeStationFrom
+     * @param codeStationTo
+     */
+    initResultItinerary (codeStationFrom, codeStationTo) {
+        console.log("initResultItinerary:::"+codeStationFrom+","+codeStationTo);
+        this.callAPIItineraire("%3AOIF%3ASA%3A8738400","%3AOIF%3ASA%3A59300","20170623T093135");
     }
 
     /**
