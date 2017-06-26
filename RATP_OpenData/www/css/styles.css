@@ -176,3 +176,228 @@ i.fa {
 .page-content.no-padding-top{
     padding-top:0;
 }
+
+/*-------------------------------------------*/
+
+/*Itinéraire*/
+
+/*-------------------------------------------*/
+
+.page-content.itineraire{
+    background: #fff;
+    padding: 100px 15px 50px 15px;
+}
+
+.itineraire>div{
+    display: flex;
+}
+
+.itineraire .step{
+    /*padding: 15px 0px;*/
+}
+.itineraire .time{
+    width: 20%;
+    padding: 5px;
+    margin-top: -20px;
+    color: #B6B6B6;
+    font-size: 0.9em;
+    text-align: right;
+    display: inline-flex;
+    align-items: flex-;
+    align-content: flex-end;
+    flex-direction: row;
+    /* margin-left: auto; */
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.itineraire .time .now {
+    margin-top: -8px;
+}
+.itineraire .time .now img{
+    max-width: 8px;
+    height: auto;
+}
+
+.itineraire .stations{
+    width: 80%;
+    padding:0px 5px;
+    margin-top: -15px;
+    position:relative;
+}
+
+.itineraire .stations .transport-mode{
+    margin: 10px 0 50px 0;
+    color: #B6B6B6;
+}
+
+.itineraire .step.walk .stations .transport-mode{
+    margin: 20px 0 40px 0;
+}
+
+.itineraire .stations .transport-mode i{
+    margin: 5px;
+}
+
+.itineraire .start-direction{
+    color: #B6B6B6;
+}
+
+.itineraire .start-direction span{
+    max-width: 20px;
+}
+
+.itineraire .start-direction i{
+    font-size: 1em;
+    font-weight: 600;
+    margin: 6px;
+}
+
+
+.itineraire .ligne {
+    width: 15px;
+    border-radius: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    margin-top: -15px;
+    background-color: #B6B6B6;
+}
+
+.itineraire .step:first-of-type .ligne{
+    z-index: 50;
+}
+
+.itineraire .end{
+    position:absolute;
+    bottom: -5px;
+}
+
+/*Ronds stations*/
+
+.ligne::after{
+    content: " ";
+    background-color: transparent;
+    height: 13px;
+    width: 13px;
+    border: 3px solid #fff;
+    border-radius: 40px;
+    position: absolute;
+    bottom: -4px;
+    left: -3px;
+    z-index: 2000;
+}
+
+.step:last-of-type .ligne::before {
+    content: " ";
+    /* background-color: #fff; */
+    height: 19px;
+    width: 19px;
+    border: 4px solid #fff;
+    border-radius: 40px;
+    position: absolute;
+    bottom: -8px;
+    left: -7px;
+    z-index: 1000;
+}
+
+/*Couleurs des lignes*/
+
+
+.ligne.ligne1{
+    background-color: #FFCD00;
+}
+.step:last-of-type .ligne.ligne1::before {
+    border-color: #FFCD00;
+}
+
+.ligne.ligne2{
+    background-color: #003CA6;
+}
+.step:last-of-type .ligne.ligne2::before {
+    border-color: #003CA6;
+}
+
+.ligne.ligne3{
+    background-color: #837902;
+}
+.step:last-of-type .ligne.ligne3::before {
+    border-color: #837902;
+}
+
+.ligne.ligne4{
+    background-color: #CF009E;
+}
+.step:last-of-type .ligne.ligne4::before {
+    border-color: #CF009E;
+}
+
+.ligne.ligne5{
+    background-color: #FF7E2E;
+}
+.step:last-of-type .ligne.ligne5::before {
+    border-color: #FF7E2E;
+}
+
+.ligne.ligne6{
+    background-color: #6ECA97;
+}
+.step:last-of-type .ligne.ligne6::before {
+    border-color: #6ECA97;
+}
+
+.ligne.ligne7{
+    background-color: #FA9ABA;
+}
+.step:last-of-type .ligne.ligne7::before {
+    border-color: #FA9ABA;
+}
+
+.ligne.ligne8{
+    background-color: #E19BDF;
+}
+.step:last-of-type .ligne.ligne8::before {
+    border-color: #E19BDF;
+}
+
+.ligne.ligne9{
+    background-color: #B6BD00;
+}
+.step:last-of-type .ligne.ligne9::before {
+    border-color: #B6BD00;
+}
+
+.ligne.ligne10{
+    background-color: #C9910D;
+}
+.step:last-of-type .ligne.ligne10::before {
+    border-color: #C9910D;
+}
+
+.ligne.ligne11{
+    background-color: #704B1C;
+}
+.step:last-of-type .ligne.ligne11::before {
+    border-color: #704B1C;
+}
+
+.ligne.ligne12{
+    background-color: #007852;
+}
+.step:last-of-type .ligne.ligne12::before {
+    border-color: #007852;
+}
+
+.ligne.ligne13{
+    background-color: #6EC4E8;
+}
+.step:last-of-type .ligne.ligne13::before {
+    border-color: #6EC4E8;
+}
+
+.ligne.ligne14{
+    background-color: #62259D;
+}
+.step:last-of-type .ligne.ligne14::before {
+    border-color: #62259D;
+}
