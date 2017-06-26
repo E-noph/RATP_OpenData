@@ -203,12 +203,19 @@ i.fa {
     font-size: 0.9em;
     text-align: right;
     display: inline-flex;
-    align-items: flex-;
+    /*align-items: flex-;*/
     align-content: flex-end;
     flex-direction: row;
     /* margin-left: auto; */
     justify-content: flex-end;
     align-items: flex-start;
+    position: relative;
+}
+
+.itineraire .time .end-time{
+    display: inline-flex;
+    position:absolute;
+    bottom: -3px;
 }
 
 .itineraire .time .now {
