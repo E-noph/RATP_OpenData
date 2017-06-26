@@ -6,7 +6,7 @@ class CloseToView {
 
     constructor() {
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
-        this._distance = "500&";
+        this._distance = "400&";
 
         this._stationCloseToList = [];
 
