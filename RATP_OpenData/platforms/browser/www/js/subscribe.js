@@ -5,7 +5,7 @@
 class SubscribeView {
 
     constructor() {
-        this._Host = 'http://192.168.56.1/';
+        this._Host = 'http://134.157.46.188/';
         this._apiURIsubscribe = 'server/subscribe.php';
     }
 
