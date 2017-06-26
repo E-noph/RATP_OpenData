@@ -7,6 +7,8 @@ class PathItineraryView {
     constructor() {
         console.log("pathItinerary:constructor()");
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
+        this._Host = 'http://192.168.56.1/';
+        this._apiURIstation = 'server/station.php';
     }
 
     init() {
@@ -20,6 +22,61 @@ class PathItineraryView {
      * Fonction pour récuperer les stations que l'on veut pour notre itinéaire
      */
     getRoutePoint() {
+        $.ajax({
+            url: this._Host + this._apiURIstation,
+            dataType : "json",
+            success : function(data)
+            {
+                var StationSearchBar = [];
+
+                console.log('getAPIstation response', data);
+                console.log(data[0].name);
+
+                for (var i = 0; i < data.length; i++) {
+                    StationSearchBar.push(data[i].name);
+                }
+
+                // autocomplete pour le départ d'une station
+                myApp.autocomplete({
+                    input: '#station-from',
+                    openIn: 'dropdown',
+                    autoFocus : true,
+                    source: function (autocomplete, query, render) {
+                        var results = [];
+                        if (query.length === 0) {
+                            render(results);
+                            return;
+                        }
+                        // Find matched items
+                        for (var i = 0; i < StationSearchBar.length; i++) {
+                            if (StationSearchBar[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(StationSearchBar[i]);
+                        }
+                        // Render items by passing array with result items
+                        render(results);
+                    }
+                });
+
+                //autocomplete pour l'arrivée à une station
+                myApp.autocomplete({
+                    input: '#station-to',
+                    openIn: 'dropdown',
+                    autoFocus : true,
+                    source: function (autocomplete, query, render) {
+                        var results = [];
+                        if (query.length === 0) {
+                            render(results);
+                            return;
+                        }
+                        // Find matched items
+                        for (var i = 0; i < StationSearchBar.length; i++) {
+                            if (StationSearchBar[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(StationSearchBar[i]);
+                        }
+                        // Render items by passing array with result items
+                        render(results);
+                    }
+                });
+            }
+        });
         $$('#searchItinerary-go').on('click', $.proxy(function() {
             let stationFrom = $$("#station-from").val();
             let stationTo = $$("#station-to").val();
