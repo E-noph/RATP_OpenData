@@ -21,6 +21,8 @@ i.icon-back-green{
 
 .item-right {
     padding-right: 16px;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
 }
 
@@ -44,7 +46,8 @@ i.icon-back-green{
     line-height: 1.9em;
     color: #B6B6B6;
     font-size:1.5em;
-    align-self: flex-end;
+    -ms-flex-item-align: end;
+        align-self: flex-end;
 }
 
 a{
@@ -54,8 +57,12 @@ a{
 /*LOGO*/
 
 .logo{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     max-height: 100px;
     padding-bottom: 50px;
 }
@@ -67,14 +74,24 @@ a{
 }
 
 .skyline{
+    display:-webkit-box;
+    display:-ms-flexbox;
     display:flex;
-    justify-content:center;
+    -webkit-box-pack:center;
+        -ms-flex-pack:center;
+            justify-content:center;
 }
 
 .search{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .page-content.grey {
@@ -83,6 +100,7 @@ a{
     background-position-y: bottom;
     background-repeat: no-repeat;
     background-size: contain;
+    overflow: hidden;
 }
 
 a.searchcard{
@@ -90,6 +108,8 @@ a.searchcard{
 }
 
 .two-squares{
+    display:-webkit-box;
+    display:-ms-flexbox;
     display:flex;
 }
 
@@ -189,6 +209,8 @@ i.fa {
 }
 
 .itineraire>div{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
@@ -202,17 +224,29 @@ i.fa {
     color: #B6B6B6;
     font-size: 0.9em;
     text-align: right;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
     /*align-items: flex-;*/
-    align-content: flex-end;
-    flex-direction: row;
+    -ms-flex-line-pack: end;
+        align-content: flex-end;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     /* margin-left: auto; */
-    justify-content: flex-end;
-    align-items: flex-start;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
     position: relative;
 }
 
 .itineraire .time .end-time{
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
     position:absolute;
     bottom: -3px;
