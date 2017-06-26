@@ -10,6 +10,21 @@ class StationView {
         this._apiURIaddStationFav = 'server/addFavoritesStations.php';
         this._apiURIDeleteFavoriteStation = 'server/deleteFavoriteStation.php';
 
+        this._dateAPI = this.getDate();
+    }
+
+    init() {
+        console.log("Station::init()");
+
+        this.getStation();
+
+    }
+
+    /**
+     * Fonction pour récupérer la date à l'instant même dans le format que comprend l'API navitia
+     * @returns {string}
+     */
+    getDate() {
         var str = new Date();
         var year = str.getFullYear().toString();
         var month = str.getMonth() + 1;
@@ -37,15 +52,9 @@ class StationView {
             var realSeconds = "0" + seconds.toString();
         else
             var realSeconds = seconds.toString();
-        this._dateAPI = year + realMonth + realDay + "T" + realHours + realMinutes + realSeconds + "&";
+        return year + realMonth + realDay + "T" + realHours + realMinutes + realSeconds + "&";
     }
 
-    init() {
-        console.log("Station::init()");
-
-        this.getStation();
-
-    }
 
     /**
      * Fonction qui appelle notre base de données et récupére tous les noms de stations ainsi que leurs codes et coordonnées.
@@ -77,6 +86,7 @@ class StationView {
         });
     }
 
+
     /**
      * Fonction d'init de la page html nextTrains
      * @param codeStation
@@ -86,8 +96,11 @@ class StationView {
         console.log("nextTrains:Init()")
         console.log(codeStation);
         console.log(nameStation);
-        console.log(this._dateAPI);
         console.log(id);
+
+        this._dateAPI = this.getDate();
+        console.log("NOW"+this._dateAPI);
+
 
         if (id != "") {
             this.FavStation(id, codeStation, this._dateAPI, nameStation);
@@ -95,6 +108,7 @@ class StationView {
             this.callAPIStation(codeStation, this._dateAPI, nameStation);
         }
     }
+
 
     /**
      * Fonction pour savoir si la station qu'on change est une de nos stations favorites
@@ -141,6 +155,15 @@ class StationView {
         });
     }
 
+    /**
+     * Fonction pour ajouter ou supprimer une station favorite suivant la couleur de l'étoile
+     * @param userID
+     * @param codeStation
+     * @param date
+     * @param nameStation
+     * @param bool
+     * @param idFav
+     */
     switchFavStation(userID, codeStation, date, nameStation, bool, idFav) {
 
         if (bool) {
@@ -274,4 +297,5 @@ class StationView {
             console.log('CALL API STATION FAILED: ', jqXHR, textStatus, errorThrown);
         });
     }
+
 }
