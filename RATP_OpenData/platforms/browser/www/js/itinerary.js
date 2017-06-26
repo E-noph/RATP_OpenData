@@ -7,7 +7,7 @@ class PathItineraryView {
     constructor() {
         console.log("pathItinerary:constructor()");
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
-        this._Host = 'http://localhost:8080/';
+        this._Host = 'http://192.168.56.1/';
         this._apiURIstation = 'server/station.php';
         this._apiURIitinerary = 'server/itinerary.php';
     }
@@ -103,20 +103,20 @@ class PathItineraryView {
                 success : function(data)
                 {
                     console.log('getAPIitinerary response', data);
-                    stationToCode = data;         
-                }
-            });
+                    stationToCode = data;
 
-            mainView.router.load({
-                url: 'pathItinerary.html',
-                query : {
-                    stationFormCode,
-                    stationToCode,
+                    mainView.router.load({
+                        url: 'pathItinerary.html',
+                        query : {
+                            stationFormCode,
+                            stationToCode,
+                        }
+                    });
                 }
             });
 
         }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
-            console.log('CALL API ITINERAIRE FAILED: ', jqXHR, textStatus, errorThrown);
+            console.log('Ajax from codeStation', jqXHR, textStatus, errorThrown);
         });
     }
 
@@ -137,6 +137,7 @@ class PathItineraryView {
      * @param dateTime
      */
     callAPIItineraire(codeStationFrom, codeStationTo, dateTime) {
+        console.log(codeStationFrom+"    "+codeStationTo);
         $.ajax({
             url: this._APINativia + "journeys?from=stop_area%3AOIF%3ASA%3A"+codeStationFrom+"&to=stop_area%3AOIF%3ASA%3A"+codeStationTo+"&datetime="+dateTime,
         }).done($.proxy(function(data){
