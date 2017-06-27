@@ -15,7 +15,6 @@ class Application {
 
 
         // views
-        this._test = new TestView();
         this._accountManager = new AccountManager();
         this._station = new StationView();
         this._closeTo = new CloseToView();
@@ -208,14 +207,7 @@ class Application {
             console.log('CALL API USER FAILED: ', jqXHR, textStatus, errorThrown);
         });
     }
-
-
-    /**
-     *
-     */
-    initTest() {
-        this._test.init();
-    }
+    
 
     /**
      *
