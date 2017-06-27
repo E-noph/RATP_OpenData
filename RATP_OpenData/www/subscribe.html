@@ -1,7 +1,6 @@
 <div class="pages">
     <div data-page="subscribe" class="page">
 
-        <div class="navbar">
             <div class="navbar-inner">
                 <div class="left">
                     <a href="#" class="back link">
@@ -11,12 +10,9 @@
                 </div>
                 <div class="center sliding i18n">Inscrivez-vous</div>
             </div>
-        </div>
 
-        <div class="page-content" id="subscribe-page-content">
-            <div class="login-screen-title i18n">
-                        <img class="login-logo" src="img/PGO-square.png" alt="Logo">
-            </div>
+        <div class="page-content navbar-through" id="subscribe-page-content">
+            <div class="content-block-title">Inscription</div>
             <div class="list-block">
                 <ul>
                     <!-- Text inputs -->
@@ -24,8 +20,9 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon f7-icons">person</i></div>
                             <div class="item-inner">
+                                <div class="item-title label">Nom</div>
                                 <div class="item-input">
-                                    <input type="text" placeholder="Votre nom" id="name-subscribe">
+                                    <input type="text" placeholder="Your name" id="name-subscribe">
                                 </div>
                             </div>
                         </div>
@@ -34,8 +31,9 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon f7-icons">email</i></div>
                             <div class="item-inner">
+                                <div class="item-title label">E-mail</div>
                                 <div class="item-input">
-                                    <input type="email" placeholder="Votre e-mail" id="mail-subscribe">
+                                    <input type="email" placeholder="E-mail" id="mail-subscribe">
                                 </div>
                             </div>
                         </div>
@@ -44,8 +42,9 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon f7-icons">lock</i></div>
                             <div class="item-inner">
+                                <div class="item-title label">Mot de Passe</div>
                                 <div class="item-input">
-                                    <input type="password" placeholder="Votre mot de passe" id="password-subscribe">
+                                    <input type="password" placeholder="Password" id="password-subscribe">
                                 </div>
                             </div>
                         </div>
@@ -54,15 +53,16 @@
                         <div class="item-content">
                             <div class="item-media"><i class="icon f7-icons">lock</i></div>
                             <div class="item-inner">
+                                <div class="item-title label">Confirm MDP</div>
                                 <div class="item-input">
-                                    <input type="password" placeholder="Confirmer votre mot de passe" id="confirm-password-subscribe">
+                                    <input type="password" placeholder=" Confirm Password" id="confirm-password-subscribe">
                                 </div>
                             </div>
                         </div>
                     </li>
                 </ul>
             </div>
-            <div class="content-block inscription-button">
+            <div class="content-block">
                 <div class="list-block">
                     <ul>
                         <li><a href="#" class="subscribe item-link list-button i18n" id="subscribe">S'inscrire</a></li>

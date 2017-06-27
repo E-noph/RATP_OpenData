@@ -74,5 +74,9 @@ $$(document).on('pageInit', function (e) {
         app.initSearchItinerary();
     } else if (page.name === 'subscribe') {
         app.initSubscribe();
+    } else if (page.name === 'index') {
+        $$('#connect-user').on('click', $.proxy(function() {
+            app.getAPI();
+        }));
     }
 });
