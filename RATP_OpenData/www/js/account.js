@@ -28,11 +28,11 @@ class AccountManager {
         if (app._accountList.length != 0) {
             while (i < app._accountList.rows.length) {
                 chaine += '<li class="accordion-item">' +
-                    '<a href="#" class="item-content item-link">' +
-                    '<div class="item-inner">' +
-                    '<div class="item-title">Vos comptes </div>' +
-                    '</div>' +
-                    '</a>' +
+                    // '<a href="#" class="item-content item-link">' +
+                    // '<div class="item-inner">' +
+                    // '<div class="item-title">Vos comptes </div>' +
+                    // '</div>' +
+                    // '</a>' +
                     '<div class="accordion-item-content">' +
                     '<ul>';
                 while (app._accountList.rows[i]) {
@@ -50,7 +50,7 @@ class AccountManager {
 
                         // If the current account is the default account, add user accounts to the current server user list
                         chaine += '<div class="item-media">' +
-                            '<i class="f7-icons icon-jaune">star_fill</i>' +
+                            '<i class="f7-icons icon-green">star_fill</i>' +
                             '</div>' +
                             '<div value="' + i + '"  class="item-inner" >' + app._accountList.rows[i].user + '</div>';
                     } else {
@@ -84,7 +84,7 @@ class AccountManager {
 
         } else {
 
-            chaine += '<p>Veuillez vous connecter pour gérer vos utilisateurs</p></ul>';
+            chaine += '<div class="content-block favorites-error-connect"><div class="content-block-inner"><a href="#" class="back link">Veuillez vous connecter pour gérer les utilisateurs.</a></div></div>';
             $$('#account-list').html(chaine);
         }
     }
