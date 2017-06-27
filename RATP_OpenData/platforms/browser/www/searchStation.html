@@ -1,0 +1,42 @@
+<div class="pages">
+    <div data-page="searchStation" class="page">
+
+        <div class="navbar-through">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="#" class="back link">
+                        <i class="f7-icons icon-back-green">chevron-left</i>
+                        <span>Retour</span>
+                    </a>
+                </div>
+                <div class="center sliding">Rechercher une station</div>
+            </div>
+        </div>
+
+        <div class="page-content grey" id="search-station-page-content">
+                <!-- Search Bar -->
+                <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init">
+                    <div class="searchbar-input">
+                        <input type="search" placeholder="Rechercher"><a href="#" class="searchbar-clear"></a>
+                    </div><a href="#" class="searchbar-cancel">Annuler</a>
+                </form>
+
+                <!-- Search Bar overlay -->
+                <div class="searchbar-overlay"></div>
+
+                <div class="page-content no-padding-top">
+                    <!-- This block will be displayed if nothing found -->
+                    <div class="content-block searchbar-not-found">
+                        <div class="content-block-inner">Oops, j'ai rien trouvé !</div>
+                    </div>
+
+                    <!-- This block will be displayed if anything found, and this list block is used a searbar target -->
+                    <div class="list-block list-block-search searchbar-found">
+                        <ul id="list-items-stations">
+        
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
