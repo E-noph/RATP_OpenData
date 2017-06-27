@@ -148,6 +148,11 @@ input#login-screen-username::-webkit-input-placeholder, input#login-screen-passw
     font-weight: 200;
 }
 
+#subscribe {
+    color: #50E3C2;
+    font-weight: 400;
+}
+
 .login-title{
     position: relative;
     margin: 0;
@@ -156,6 +161,11 @@ input#login-screen-username::-webkit-input-placeholder, input#login-screen-passw
     color: #6d6d72;
     margin: 35px 15px 10px;
     text-align: center;
+}
+
+.inscription-button{
+    padding-left:0;
+    padding-right: 0;
 }
 
 /*CloseTo*/
@@ -442,3 +452,4 @@ i.fa {
 .step:last-of-type .ligne.ligne14::before {
     border-color: #62259D;
 }
+

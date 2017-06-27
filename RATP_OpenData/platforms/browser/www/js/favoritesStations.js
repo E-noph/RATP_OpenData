@@ -5,7 +5,7 @@
 class FavoritesStationsView {
 
     constructor() {
-        this._Host = 'http://134.157.46.188/';
+        this._Host = 'http://localhost/';
         this._apiURIFavoritesStations = 'server/favoritesStations.php';
         this._apiURIDeleteFavoriteStation = 'server/deleteFavoriteStation.php';
     }
