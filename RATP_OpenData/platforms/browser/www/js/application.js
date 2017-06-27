@@ -26,6 +26,7 @@ class Application {
         this._userList = [];
 
         this._userID = '';
+        this._username = '';
 
         console.log("++++++++++", this._serverPhonegap);
 
@@ -77,7 +78,11 @@ class Application {
                 }
             );
         });
-        this.showLogin();
+        if (this._userID == '') {
+            this.showLogin();
+        } else {
+            this.disconnect();
+        }
     }
 
     /**
@@ -134,6 +139,26 @@ class Application {
             console.log("5");
 
         }));
+
+    }
+
+
+    disconnect() {
+        myApp.loginScreen();
+        let result = '<div class="login-screen-title i18n">' +
+                        '<img class="login-logo" src="img/PGO-square.png" alt="Logo">' +
+                     '</div>'+
+                     '<a href="#" class="close-login-screen">'+
+                        '<i class="f7-icons close-button">close</i>'+
+                     '</a>'+
+                     '<p>Vous êtes bien connecter sous l\'\adresse '+this._username+'</p>';
+        $$('.login-screen-content').html(result);
+
+        /*
+        this._user = '';
+        this.username = '';
+        myApp.closeModal();
+         */
 
     }
 
@@ -197,6 +222,7 @@ class Application {
                     // Initialize application
                     myApp.closeModal();
                     this._userID = data[0].id;
+                    this._username = data[0].name;
                     console.log(this._userID);
                 }
             } else {
