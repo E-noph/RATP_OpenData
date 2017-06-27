@@ -24,7 +24,7 @@ class FavoritesStationsView {
     getFavoritesStation(id) {
 
         if (id == "") {
-            let messageConnexion = '<p>Veuillez vous connecter pour voir vos favoris</p>';
+            let messageConnexion = '<div class="content-block favorites-error-connect"><div class="content-block-inner"><a href="#" class="back link">Veuillez vous connecter pour voir vos favoris.</a></div></div>';
 
             $$('#list-favorites-stations').html(messageConnexion);
         } else {
@@ -61,7 +61,7 @@ class FavoritesStationsView {
                             setTimeout(favStation.deleteFavorite(el.id, id),1000);
                         }));
                     } else {
-                        favoritesStations += "<p>Vous n'avez pas de favoris</p>";
+                        favoritesStations += '<div class="content-block favorites-error-connect"><div class="content-block-inner"><a href="#" class="back link">Vous n\'\avez aucun favori. Recherchez une station et ajoutez la dans vos favoris en cliquant sur l\'\étoile.</a></div></div>';
 
                         $$('#list-favorites-stations').html(favoritesStations);
                     }

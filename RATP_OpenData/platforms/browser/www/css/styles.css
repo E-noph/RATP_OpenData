@@ -54,6 +54,17 @@ a{
     color: #50E3C2;
 }
 
+/*Favorites*/
+
+.favorites-error-connect a{
+     font-weight: 400;
+     font-size: 1em;
+}
+
+.favorites-error-connect{
+     margin: 0;
+ }
+
 /*LOGO*/
 
 .logo{
@@ -156,6 +167,16 @@ input#login-screen-username::-webkit-input-placeholder, input#login-screen-passw
     color: #6d6d72;
     margin: 35px 15px 10px;
     text-align: center;
+}
+
+#subscribe {
+    color: #50E3C2;
+    font-weight: 400;
+}
+
+.inscription-button{
+    padding-left:0;
+    padding-right: 0;
 }
 
 /*CloseTo*/
