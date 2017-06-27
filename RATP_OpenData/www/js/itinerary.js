@@ -7,7 +7,7 @@ class PathItineraryView {
     constructor() {
         console.log("pathItinerary:constructor()");
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
-        this._Host = 'http://localhost:8080/';
+        this._Host = 'http://134.157.46.190/';
         this._apiURIstation = 'server/station.php';
         this._apiURIitinerary = 'server/itinerary.php';
         this._date = "";
@@ -315,7 +315,7 @@ class PathItineraryView {
                                                         '</div>' +
                                                     '</div>';
                         }
-                        else if((j+1)==data.journeys[i].sections.length-1 && (data.journeys[i].sections[j+1].type=="transfer" || data.journeys[i].sections[j+1].type=="waiting" || data.journeys[i].sections[j+1].type=="crow_fly") && data.journeys[i].sections[j+1].from.name!=data.journeys[i].sections[j+1].to.name) {
+                        else if((j+1)==data.journeys[i].sections.length-1 && (data.journeys[i].sections[j+1].type=="transfer" || data.journeys[i].sections[j+1].type=="waiting" || data.journeys[i].sections[j+1].type=="crow_fly") && data.journeys[i].sections[j+1].from.name==data.journeys[i].sections[j+1].to.name) {
                             itemStationSearchBar += '<div class="step">' +
                                                         '<div class="time">' + heure + 
                                                             '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>' +
