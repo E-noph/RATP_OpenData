@@ -11,7 +11,7 @@ class Application {
         this._serverPhonegap = location.href.split(':')[1].substr(2);
         this._user = "";
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
-        this._APIServer = 'http://134.157.46.190/server/';
+        this._APIServer = 'http://localhost/server/';
 
 
         // views
@@ -78,6 +78,7 @@ class Application {
                 }
             );
         });
+        console.log("r"+this._userID+"r");
         if (this._userID == '') {
             this.showLogin();
         } else {
@@ -151,15 +152,61 @@ class Application {
                      '<a href="#" class="close-login-screen">'+
                         '<i class="f7-icons close-button">close</i>'+
                      '</a>'+
-                     '<p>Vous êtes bien connecter sous l\'\adresse '+this._username+'</p>';
+                     '<div class="list-block-label">' +
+                        '<p>Bonjour <span class="username">'+this._username+'</span></p></p>'+
+                        '<p><a href="#" class="icon-green" id="logout">Se déconnecter</a></p>'+
+                    '</div>';
         $$('.login-screen-content').html(result);
+        let that = this;
 
-        /*
-        this._user = '';
-        this.username = '';
-        myApp.closeModal();
-         */
+        $$('#logout').on('click', $.proxy(function() {
+            that._userID = '';
+            that._username = '';
+            let result = '<div class="login-screen-title i18n">'+
+                        '<img class="login-logo" src="img/PGO-square.png" alt="Logo">'+
+                    '</div>'+
+                    '<a href="#" class="close-login-screen">'+
+                        '<i class="f7-icons close-button">close</i>'+
+                    '</a>'+
+                    '<form id="login-form">'+
+                        '<div class="list-block">'+
+                           ' <ul>'+
+                               ' <li class="item-content">'+
+                                    '<div class="item-content border-green">'+
+                                        '<div class="item-inner" id="user-autocomplete">'+
+                                            '<div class="item-input">'+
+                                               ' <input type="text" placeholder="Votre adresse e-mail" id="login-screen-username">'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</li>'+
+                                '<li class="item-content">'+
+                                    '<div class="item-content border-green">'+
+                                        '<div class="item-inner">'+
+                                            '<div class="item-input">'+
+                                                '<input type="password" placeholder="Votre mot de passe" id="login-screen-password">'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</li>'+
+                            '</ul>'+
+                        '</div>'+
+                    '</form>'+
+                    '<div class="content-block">'+
+                        '<div class="list-block">'+
+                            '<ul>'+
+                                '<li><a href="#" class="login-screen-signin item-link list-button i18n" id="login-screen-signin">Se connecter</a></li>'+
+                            '</ul>'+
+                            '<div class="list-block-label">'+
+                                '<p>Vous n\'\êtes pas encore inscrits ?</p>'+
+                                '<p><a href="subscribe.html" class="icon-green">Inscrivez-vous</a></p>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>';
 
+                    $$('.login-screen-content').html(result);
+                    myApp.closeModal();
+        }));
     }
 
 
