@@ -224,7 +224,7 @@ class StationView {
             for (var i = 0; i < data.departures.length; i++) {
                 if("Métro".localeCompare(data.departures[i].display_informations.commercial_mode)==0) {
                     // Cette chaîne concatène la ligne du métro et sa direction
-                    var strFullInfo = data.departures[i].display_informations.code + data.departures[i].display_informations.direction;
+                    var strFullInfo = data.departures[i].display_informations.code + data.departures[i].display_informations.direction.substring(0,data.departures[i].display_informations.direction.indexOf("("));
                     if(metroTab.hasOwnProperty(strFullInfo)) {
                         //var tmp = parseInt(data.departures[i].display_informations.code);
                         if(metroTab[strFullInfo]<2) {
@@ -266,7 +266,7 @@ class StationView {
                         arrivalTime = arrivalTime / 60000;
                         arrivalTime = Math.round(arrivalTime);
                         affTab[strFullInfo] += '<li><div class="item-content"><div class="item-media"><span class="metro ligne' + data.departures[i].display_informations.code + '">Ligne ' + data.departures[i].display_informations.code +
-                            '</span></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + data.departures[i].display_informations.direction + '</div></div><div class="item-subtitle">' + data.departures[i].stop_point.label + '</div></div><div class="item-right"><div class="now">' + arrivalTime + '</div><div class="now time"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>';
+                            '</span></div><div class="item-inner"><div class="item-title-row"><div class="item-title">' + data.departures[i].display_informations.direction.substring(0,data.departures[i].display_informations.direction.indexOf("(")) + '</div></div><div class="item-subtitle">' + data.departures[i].stop_point.name + '</div></div><div class="item-right"><div class="now">' + arrivalTime + '</div><div class="now time"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>';
                         metroTab[strFullInfo]++;
                     }
                 }
