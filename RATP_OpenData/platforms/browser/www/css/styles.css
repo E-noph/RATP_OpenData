@@ -10,6 +10,13 @@
    See https://github.com/apache/cordova-plugin-statusbar
 */
 
+/*PANEL*/
+
+.panel img{
+    filter: grayscale(100%);
+}
+
+
 i.icon-back-green{
     font-weight: 600;
     line-height: 2em;
@@ -154,9 +161,11 @@ a.searchcard{
     margin-bottom: 15px;
 }
 
-input#login-screen-username::-webkit-input-placeholder, input#login-screen-password::-webkit-input-placeholder  {
+input#login-screen-username::-webkit-input-placeholder, 
+input#login-screen-password::-webkit-input-placeholder,
+  {
     color: #50E3C2;
-    font-weight: 200;
+    font-weight: 300;
 }
 
 .login-title{
@@ -169,7 +178,7 @@ input#login-screen-username::-webkit-input-placeholder, input#login-screen-passw
     text-align: center;
 }
 
-#subscribe {
+#subscribe, #searchItinerary-go{
     color: #50E3C2;
     font-weight: 400;
 }
@@ -223,6 +232,14 @@ i.fa {
 /*Itinéraire*/
 
 /*-------------------------------------------*/
+
+/*Recherche*/
+
+#searchItinerary-form li{
+    color: #50E3C2;
+}
+
+
 
 .page-content.itineraire{
     background: #fff;
