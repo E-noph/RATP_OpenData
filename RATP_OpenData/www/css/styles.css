@@ -54,6 +54,18 @@ a{
     color: #50E3C2;
 }
 
+/*Favorites*/
+
+.favorites-error-connect a{
+    font-weight: 400;
+    font-size: 1em;
+}
+
+.favorites-error-connect{
+    margin: 0;
+}
+
+
 /*LOGO*/
 
 .logo{
