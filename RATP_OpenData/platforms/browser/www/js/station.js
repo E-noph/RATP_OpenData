@@ -5,7 +5,7 @@ class StationView {
     constructor() {
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
         this._distance = "50";
-        this._Host = 'http://134.157.46.188/';
+        this._Host = 'http://134.157.46.190/';
         this._apiURIstation = 'server/station.php';
         this._apiURIaddStationFav = 'server/addFavoritesStations.php';
         this._apiURIDeleteFavoriteStation = 'server/deleteFavoriteStation.php';

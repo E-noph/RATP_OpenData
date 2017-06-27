@@ -56,9 +56,7 @@ $$('#connect-user').on('click', $.proxy(function() {
 $$(document).on('pageInit', function (e) {
     var page = e.detail.page;
 
-    if (page.name === 'test') {
-        app.initTest();
-    } else if (page.name === 'account') {
+    if (page.name === 'account') {
         app.initAccountManager();
     } else if (page.name === 'searchStation') {
         app.initSearchStation();
@@ -74,5 +72,9 @@ $$(document).on('pageInit', function (e) {
         app.initSearchItinerary();
     } else if (page.name === 'subscribe') {
         app.initSubscribe();
+    } else if (page.name === 'index') {
+        $$('#connect-user').on('click', $.proxy(function() {
+            app.getAPI();
+        }));
     }
 });
