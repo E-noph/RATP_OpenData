@@ -10,6 +10,7 @@ class PathItineraryView {
         this._Host = 'http://192.168.56.1/';
         this._apiURIstation = 'server/station.php';
         this._apiURIitinerary = 'server/itinerary.php';
+        this._date = "";
     }
 
     init() {
@@ -120,6 +121,42 @@ class PathItineraryView {
         });
     }
 
+
+    /**
+     * Fonction pour récupérer la date à l'instant même dans le format que comprend l'API navitia
+     * @returns {string}
+     */
+    getDate() {
+        var str = new Date();
+        var year = str.getFullYear().toString();
+        var month = str.getMonth() + 1;
+        if(month<10)
+            var realMonth = "0" + month.toString();
+        else
+            var realMonth = month.toString();
+        var day = str.getDate();
+        if(day<10)
+            var realDay = "0" + day.toString();
+        else
+            var realDay = day.toString();
+        var hours = str.getHours();
+        if(hours<10)
+            var realHours = "0" + hours.toString();
+        else
+            var realHours = hours.toString();
+        var minutes = str.getMinutes();
+        if(minutes<10)
+            var realMinutes = "0" + minutes.toString();
+        else
+            var realMinutes = minutes.toString();
+        var seconds = str.getSeconds();
+        if(seconds<10)
+            var realSeconds = "0" + seconds.toString();
+        else
+            var realSeconds = seconds.toString();
+        return year + realMonth + realDay + "T" + realHours + realMinutes + realSeconds + "&";
+    }
+
     /**
      * Init de la page concernant le résultat pour l'itinéraire
      * @param codeStationFrom
@@ -127,7 +164,8 @@ class PathItineraryView {
      */
     initResultItinerary (codeStationFrom, codeStationTo) {
         console.log("initResultItinerary:::"+codeStationFrom+","+codeStationTo);
-        this.callAPIItineraire(codeStationFrom,codeStationTo,"20170623T093135");
+        this._date = this.getDate();
+        this.callAPIItineraire(codeStationFrom,codeStationTo,this._date);
     }
 
     /**

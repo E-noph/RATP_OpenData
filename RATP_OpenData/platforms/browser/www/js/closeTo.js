@@ -29,7 +29,7 @@ class CloseToView {
             zoom: 16,
             zoomControl : false,
             scrollwheel : false,
-            draggable : false,
+            //draggable : false,
             disableDoubleClickZoom : true,
         });
 
