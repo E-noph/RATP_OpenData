@@ -10,6 +10,46 @@
    See https://github.com/apache/cordova-plugin-statusbar
 */
 
+/*Google Material Icons*/
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../lib/framework7/fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(../lib/framework7/fonts/MaterialIcons-Regular.woff2) format('woff2'),
+    url(../lib/framework7/fonts/MaterialIcons-Regular.woff) format('woff'),
+    url(../lib/framework7/fonts/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+
 /*PANEL*/
 
 .panel img{
@@ -240,10 +280,63 @@ i.fa {
 }
 
 
+/*Liste des itinéraires*/
+
+/*div#pathItinerary-page-content{
+    padding: 30px 0px;
+}*/
+
+.itineraire li.accordion-item.accordion-item-expanded a {
+    background: #50E3C2;
+}
+
+.itineraire li.accordion-item.accordion-item-expanded .item-inner,
+.itineraire li.accordion-item.accordion-item-expanded .item-details i,
+.itineraire li.accordion-item.accordion-item-expanded .item-details div.details-nb{
+    color: #fff;
+}
+
+.itineraire .item-title{
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.itineraire .item-inner{
+    display: block;
+    margin: 5px auto;
+}
+
+.itineraire .item-details i{
+    color: #50E3C2;
+    font-size: 1em;
+    margin-right: 5px;
+}
+
+.itineraire .item-details div{
+    display: flex;
+    align-items: center;
+}
+
+.itineraire .item-details{
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20%;
+}
+
+.itineraire .item-details div.details-nb{
+    display: inline;
+    font-size: 0.8em;
+    color: #B6B6B6;
+}
 
 .page-content.itineraire{
-    background: #fff;
-    padding: 100px 15px 50px 15px;
+    /*background: #fff;*/
+    /*padding: 100px 15px 50px 15px;*/
+}
+
+.page-content.itineraire .list-block ul{
+    width: 100%;
 }
 
 .itineraire>div{
@@ -252,9 +345,24 @@ i.fa {
     display: flex;
 }
 
-.itineraire .step{
-    /*padding: 15px 0px;*/
+.itineraire .step, .itineraire .first-step{
+    display: flex;
+    width: 100%;
 }
+
+.itineraire .step, .itineraire .first-step{
+    display: flex;
+    width: 100%;
+}
+
+.itineraire .step:first-of-type, .itineraire .first-step{
+    margin-top: 30px;
+}
+
+.itineraire .step:last-of-type{
+    margin-bottom: 30px;
+}
+
 .itineraire .time{
     width: 20%;
     padding: 5px;

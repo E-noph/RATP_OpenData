@@ -128,7 +128,7 @@ class CloseToView {
                 $$('#list-closeTo').html(stationClose);
 
             } else {
-                stationClose += "<p>Aucune station de métro à moins de 300m</p>";
+                stationClose += "<p>Aucune station de métro à moins de 300m.</p>";
 
                 $$('#list-closeTo').html(stationClose);
             }
