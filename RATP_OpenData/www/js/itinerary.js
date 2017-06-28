@@ -342,7 +342,25 @@ class PathItineraryView {
                             j += 2;
                         }
                         else {
-                            console.log("marche putain");
+                            itemStationSearchBar += '<div class="step walk">' +
+                                '<div class="time">' + heure +
+                                '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>' +
+                                '<div class="end-time">' + arrive +
+                                '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>' +
+                                '</div>' +
+                                '</div>' +
+                                '<div class="ligne"></div>' +
+                                '<div class="stations">' +
+                                '<div class="start">' + data.journeys[i].sections[j].from.stop_point.name + '</div>' +
+                                '<div class="transport-mode">' +
+                                '<i class="fa walking-icon" aria-hidden="true"></i>' +
+                                Math.round(data.journeys[i].sections[j].duration/60) +
+                                ' min' +
+                                '</div>' +
+                                '<div class="end">' + data.journeys[i].sections[j].from.stop_point.name + '</div>' +
+
+                                '</div>' +
+                                '</div>';
                         }
                      
                     }
