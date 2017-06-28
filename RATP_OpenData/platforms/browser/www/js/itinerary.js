@@ -214,7 +214,6 @@ class PathItineraryView {
                         '<a href="#" class="item-content item-link">' +
                         '<div class="item-inner">';
 
-<<<<<<< Updated upstream
 
                     if (data.journeys[i].type == "best") {
                         liAccordion += '<div class="item-title">Le meilleur trajet</div>';
@@ -232,7 +231,7 @@ class PathItineraryView {
                     else if (data.journeys[i].type == "fastest") {
                         liAccordion += '<div class="item-title">Le plus rapide</div>';
                         fastest++;
-=======
+
                     /*if(data.journeys[i].sections[j].from !== undefined)
                      {
                      */
@@ -339,7 +338,6 @@ class PathItineraryView {
                                                             '</div>' +
                                                         '</div>' +
                                                     '</div>';
->>>>>>> Stashed changes
                     }
 
 
