@@ -168,7 +168,7 @@ class PathItineraryView {
     }
 
     /**
-     * Fonction qui appelle l'API navitia pour itinéraire d'un parcours demandé
+     * Fonction qui appelle l'API navitia pour itinéraire d'un parcours demandé + mise en page des résultats
      * @param codeStationFrom
      * @param codeStationTo
      * @param dateTime
@@ -222,7 +222,7 @@ class PathItineraryView {
                         rapid++;
                     }
                     else if (data.journeys[i].type == "comfort") {
-                        liAccordion += '<div class="item-title">Le moins de correspondances et de marche</div>';
+                        liAccordion += '<div class="item-title">Le moins de correspondances</div>';
                         comfort++;
                     }
                     else if (data.journeys[i].type == "fastest") {
