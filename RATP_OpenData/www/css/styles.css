@@ -314,6 +314,12 @@ i.fa {
     margin: 20px 0 40px 0;
 }
 
+.itineraire i.fa.walking-icon::after{
+    content: url("  noun_147444.svg");
+    width: 20px;
+    height: 20px;
+}
+
 .itineraire .stations .transport-mode i{
     margin: 5px;
 }
@@ -340,11 +346,19 @@ i.fa {
     margin-right: 10px;
     position: relative;
     margin-top: -15px;
-    background-color: #B6B6B6;
+    background-color: #000;
 }
 
 .itineraire .step:first-of-type .ligne{
     z-index: 50;
+}
+
+.itineraire .walk .ligne{
+    background: #B6B6B6;
+}
+
+.itineraire .walk .ligne {
+    background: #B6B6B6;
 }
 
 .itineraire .end{
@@ -479,4 +493,55 @@ i.fa {
 }
 .step:last-of-type .ligne.ligne14::before {
     border-color: #62259D;
+}
+
+.ligne.ligne7B{
+    background-color: #7cc485;
+}
+.step:last-of-type .ligne.ligne7B::before {
+    border-color: #7cc485;
+}
+
+.ligne.ligne3B{
+    background-color: #96d7dd;
+}
+.step:last-of-type .ligne.ligne3B::before {
+    border-color: #96d7dd;
+}
+
+
+
+.ligne.ligneA{
+    background-color: #E2231A;
+}
+.step:last-of-type .ligne.ligneA::before {
+    border-color: #E2231A;
+}
+
+.ligne.ligneB{
+    background-color: #7BA3DC;
+}
+.step:last-of-type .ligne.ligneB::before {
+    border-color: #7BA3DC;
+}
+
+.ligne.ligneC{
+    background-color: #C9910D;
+}
+.step:last-of-type .ligne.ligneC::before {
+    border-color: #C9910D;
+}
+
+.ligne.ligneD{
+    background-color: #00AE41;
+}
+.step:last-of-type .ligne.ligneD::before {
+    border-color: #00AE41;
+}
+
+.ligne.ligneE{
+    background-color: #E37ED1;
+}
+.step:last-of-type .ligne.ligneE::before {
+    border-color: #E37ED1;
 }
