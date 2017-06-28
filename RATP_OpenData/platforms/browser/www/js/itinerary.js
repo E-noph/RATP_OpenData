@@ -214,6 +214,7 @@ class PathItineraryView {
                         '<a href="#" class="item-content item-link">' +
                         '<div class="item-inner">';
 
+<<<<<<< Updated upstream
 
                     if (data.journeys[i].type == "best") {
                         liAccordion += '<div class="item-title">Le meilleur trajet</div>';
@@ -231,6 +232,114 @@ class PathItineraryView {
                     else if (data.journeys[i].type == "fastest") {
                         liAccordion += '<div class="item-title">Le plus rapide</div>';
                         fastest++;
+=======
+                    /*if(data.journeys[i].sections[j].from !== undefined)
+                     {
+                     */
+
+                     if(j==0 && (data.journeys[i].sections[j].type=="transfer" || data.journeys[i].sections[j].type=="waiting" || data.journeys[i].sections[j].type=="crow_fly" || data.journeys[i].sections[j].type=="street_network")) {
+                         if(data.journeys[i].sections[j].duration==0 && data.journeys[i].sections[j].to.name==data.journeys[i].sections[j].from.name) {
+                             if((j+1)!=data.journeys[i].sections.length-1 /*|| ()*/) {
+                                 itemStationSearchBar += '<div class="first-step">' +
+                                     '<div class="time">' + heure +
+                                     '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt="">' + '</div>' +
+                                     '</div>' +
+                                     '<div class="ligne ligne' + data.journeys[i].sections[1].display_informations.code + '"></div>' +
+                                     '<div class="stations">' +
+                                     '<div class="start">' + data.journeys[i].sections[1].from.stop_point.name + '</div>' +
+                                     '<div class="start-direction">' +
+                                     '<span class="metro ligne' + data.journeys[i].sections[1].display_informations.code + '">Ligne ' + data.journeys[i].sections[1].display_informations.code + '</span>' +
+                                     '<i class="f7-icons">chevron-right</i>' +
+                                     data.journeys[i].sections[1].display_informations.direction.substring(0, data.journeys[i].sections[1].display_informations.direction.indexOf("(")) +
+                                     '</div>' +
+                                     '<div class="transport-mode">' +
+                                     '<i class="fa fa-subway" aria-hidden="true"></i>' +
+                                     Math.round(data.journeys[i].sections[1].duration / 60) + ' min' +
+                                     '</div>' +
+                                     '</div>' +
+                                     '</div>';
+                                 j++;
+                             }
+                             else {
+                                 itemStationSearchBar += '<div class="first-step">' +
+                                     '<div class="time">' + heure +
+                                     '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt="">' + '</div>' +
+                                     '<div class="end-time">' + arrive +
+                                     '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>' +
+                                     '</div>' +
+                                     '</div>' +
+                                     '<div class="ligne ligne' + data.journeys[i].sections[1].display_informations.code + '"></div>' +
+                                     '<div class="stations">' +
+                                     '<div class="start">' + data.journeys[i].sections[1].from.stop_point.name + '</div>' +
+                                     '<div class="start-direction">' +
+                                     '<span class="metro ligne' + data.journeys[i].sections[1].display_informations.code + '">Ligne ' + data.journeys[i].sections[1].display_informations.code + '</span>' +
+                                     '<i class="f7-icons">chevron-right</i>' +
+                                     data.journeys[i].sections[1].display_informations.direction.substring(0, data.journeys[i].sections[1].display_informations.direction.indexOf("(")) +
+                                     '</div>' +
+                                     '<div class="transport-mode">' +
+                                     '<i class="fa fa-subway" aria-hidden="true"></i>' +
+                                     Math.round(data.journeys[i].sections[1].duration / 60) + ' min' +
+                                     '</div>' +
+                                     '<div class="end">' + data.journeys[i].sections[1].to.stop_point.name + '</div>' +
+                                     '</div>' +
+                                     '</div>';
+                                 j++;
+                             }
+                         }
+                         else if(data.journeys[i].sections[j].to.name!=data.journeys[i].sections[j].from.name) {
+                             itemStationSearchBar += '<div class="step walk">' +
+                                                        '<div class="time">' + heure +
+                                                            '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>' +
+                                                        '</div>' +
+                                                        '<div class="ligne"></div>' +
+                                                        '<div class="stations">' +
+                                                            '<div class="start">' + data.journeys[i].sections[0].from.stop_area.name + '</div>' +
+                                                            '<div class="transport-mode">' +
+                                                                '<i class="fa walking-icon" aria-hidden="true"></i>' +
+                                                                Math.round(data.journeys[i].sections[0].duration / 60) + ' min' +
+                                                            '</div>' +
+                                                        '</div>' +
+                                                     '</div>';
+                         }
+                         else {
+                             itemStationSearchBar += '<div class="step walk">' +
+                                 '<div class="time">' + heure +
+                                 '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>' +
+                                 '</div>' +
+                                 '<div class="ligne"></div>' +
+                                 '<div class="stations">' +
+                                 '<div class="start">' + data.journeys[i].sections[0].from.name + '</div>' +
+                                 '<div class="transport-mode">' +
+                                 '<i class="fa walking-icon" aria-hidden="true"></i>' +
+                                 Math.round(data.journeys[i].sections[j].duration/60) +
+                                 ' min' +
+                                 '</div>' +
+                                 '</div>' +
+                                 '</div>';
+                         }
+                        }
+                    else if(j==0 && data.journeys[i].sections[j].type=="public_transport") {
+                        itemStationSearchBar += '<div class="first-step">' +
+                                                    '<div class="time">' + heure + 
+                                                        '<div class="now">'+
+                                                            '<img src="img/icons/mobile-phone-with-wifi.svg" alt="">'+
+                                                        '</div>' +
+                                                    '</div>' + 
+                                                    '<div class="ligne ligne' + data.journeys[i].sections[0].display_informations.code + '"></div>' +
+                                                    '<div class="stations">' +
+                                                        '<div class="start">' + data.journeys[i].sections[0].from.stop_point.name + '</div>' +
+                                                            '<div class="start-direction">' +
+                                                                '<span class="metro ligne' + data.journeys[i].sections[0].display_informations.code + '">Ligne ' + data.journeys[i].sections[0].display_informations.code + '</span>' +
+                                                                '<i class="f7-icons">chevron-right</i>' + 
+                                                                data.journeys[i].sections[0].display_informations.direction.substring(0,data.journeys[i].sections[0].display_informations.direction.indexOf("(")) + 
+                                                            '</div>' +
+                                                            '<div class="transport-mode">' +
+                                                                '<i class="fa fa-subway" aria-hidden="true"></i>' +
+                                                                Math.round(data.journeys[i].sections[0].duration/60) + ' min' +
+                                                            '</div>' +
+                                                        '</div>' +
+                                                    '</div>';
+>>>>>>> Stashed changes
                     }
 
 
