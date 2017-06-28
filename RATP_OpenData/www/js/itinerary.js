@@ -232,7 +232,7 @@ class PathItineraryView {
 
                      if(j==0 && (data.journeys[i].sections[j].type=="transfer" || data.journeys[i].sections[j].type=="waiting" || data.journeys[i].sections[j].type=="crow_fly" || data.journeys[i].sections[j].type=="street_network")) {
                          if(data.journeys[i].sections[j].duration==0 && data.journeys[i].sections[j].to.name==data.journeys[i].sections[j].from.name) {
-                             if((j+1)!=data.journeys[i].sections.length-1 || ()) {
+                             if((j+1)!=data.journeys[i].sections.length-1 /*|| ()*/) {
                                  itemStationSearchBar += '<div class="first-step">' +
                                      '<div class="time">' + heure +
                                      '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt="">' + '</div>' +
