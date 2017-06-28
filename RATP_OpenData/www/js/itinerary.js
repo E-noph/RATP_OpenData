@@ -26,9 +26,8 @@ class PathItineraryView {
     getRoutePoint() {
         $.ajax({
             url: this._Host + this._apiURIstation,
-            dataType : "json",
-            success : function(data)
-            {
+            dataType: "json",
+            success: function (data) {
                 var StationSearchBar = [];
 
                 console.log('getAPIstation response', data);
@@ -42,7 +41,7 @@ class PathItineraryView {
                 myApp.autocomplete({
                     input: '#station-from',
                     openIn: 'dropdown',
-                    autoFocus : true,
+                    autoFocus: true,
                     source: function (autocomplete, query, render) {
                         var results = [];
                         if (query.length === 0) {
@@ -62,7 +61,7 @@ class PathItineraryView {
                 myApp.autocomplete({
                     input: '#station-to',
                     openIn: 'dropdown',
-                    autoFocus : true,
+                    autoFocus: true,
                     source: function (autocomplete, query, render) {
                         var results = [];
                         if (query.length === 0) {
@@ -79,19 +78,18 @@ class PathItineraryView {
                 });
             }
         });
-        $$('#searchItinerary-go').on('click', $.proxy(function() {
+        $$('#searchItinerary-go').on('click', $.proxy(function () {
             var stationFormCode = "";
             var stationToCode = "";
 
             let stationFrom = $$("#station-from").val();
             let stationTo = $$("#station-to").val();
-            
+
             // Récupération du stop-area pour la station de départ
             $.ajax({
                 url: this._Host + this._apiURIitinerary,
-                data : {station : stationFrom},
-                success : function(data)
-                {
+                data: {station: stationFrom},
+                success: function (data) {
                     console.log('getAPIitinerary response', data);
                     stationFormCode = data;
                 }
@@ -100,13 +98,12 @@ class PathItineraryView {
             // Récupération du stop-area pour la station d'arrivée
             $.ajax({
                 url: this._Host + this._apiURIitinerary,
-                data : {station : stationTo},
-                success : function(data)
-                {
+                data: {station: stationTo},
+                success: function (data) {
                     console.log('getAPIitinerary response', data);
                     stationToCode = data;
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         mainView.router.load({
                             url: 'pathItinerary.html',
                             query: {
@@ -118,7 +115,7 @@ class PathItineraryView {
                 }
             });
 
-        }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
+        }, this)).fail(function (jqXHR, textStatus, errorThrown) {
             console.log('Ajax from codeStation', jqXHR, textStatus, errorThrown);
         });
     }
@@ -132,27 +129,27 @@ class PathItineraryView {
         var str = new Date();
         var year = str.getFullYear().toString();
         var month = str.getMonth() + 1;
-        if(month<10)
+        if (month < 10)
             var realMonth = "0" + month.toString();
         else
             var realMonth = month.toString();
         var day = str.getDate();
-        if(day<10)
+        if (day < 10)
             var realDay = "0" + day.toString();
         else
             var realDay = day.toString();
         var hours = str.getHours();
-        if(hours<10)
+        if (hours < 10)
             var realHours = "0" + hours.toString();
         else
             var realHours = hours.toString();
         var minutes = str.getMinutes();
-        if(minutes<10)
+        if (minutes < 10)
             var realMinutes = "0" + minutes.toString();
         else
             var realMinutes = minutes.toString();
         var seconds = str.getSeconds();
-        if(seconds<10)
+        if (seconds < 10)
             var realSeconds = "0" + seconds.toString();
         else
             var realSeconds = seconds.toString();
@@ -164,10 +161,10 @@ class PathItineraryView {
      * @param codeStationFrom
      * @param codeStationTo
      */
-    initResultItinerary (codeStationFrom, codeStationTo) {
-        console.log("initResultItinerary:::"+codeStationFrom+","+codeStationTo);
+    initResultItinerary(codeStationFrom, codeStationTo) {
+        console.log("initResultItinerary:::" + codeStationFrom + "," + codeStationTo);
         this._date = this.getDate();
-        this.callAPIItineraire(codeStationFrom,codeStationTo,this._date);
+        this.callAPIItineraire(codeStationFrom, codeStationTo, this._date);
     }
 
     /**
@@ -177,10 +174,10 @@ class PathItineraryView {
      * @param dateTime
      */
     callAPIItineraire(codeStationFrom, codeStationTo, dateTime) {
-        console.log(codeStationFrom+"    "+codeStationTo);
+        console.log(codeStationFrom + "    " + codeStationTo);
         $.ajax({
-            url: this._APINativia + "journeys?from=stop_area%3AOIF%3ASA%3A"+codeStationFrom+"&to=stop_area%3AOIF%3ASA%3A"+codeStationTo+"&datetime="+dateTime,
-        }).done($.proxy(function(data){
+            url: this._APINativia + "journeys?from=stop_area%3AOIF%3ASA%3A" + codeStationFrom + "&to=stop_area%3AOIF%3ASA%3A" + codeStationTo + "&datetime=" + dateTime,
+        }).done($.proxy(function (data) {
             var itemStationSearchBar = "";
             var idAccordion = "";
             var liAccordion = "";
@@ -231,115 +228,7 @@ class PathItineraryView {
                     else if (data.journeys[i].type == "fastest") {
                         liAccordion += '<div class="item-title">Le plus rapide</div>';
                         fastest++;
-
-                    /*if(data.journeys[i].sections[j].from !== undefined)
-                     {
-                     */
-
-                     if(j==0 && (data.journeys[i].sections[j].type=="transfer" || data.journeys[i].sections[j].type=="waiting" || data.journeys[i].sections[j].type=="crow_fly" || data.journeys[i].sections[j].type=="street_network")) {
-                         if(data.journeys[i].sections[j].duration==0 && data.journeys[i].sections[j].to.name==data.journeys[i].sections[j].from.name) {
-                             if((j+1)!=data.journeys[i].sections.length-1 /*|| ()*/) {
-                                 itemStationSearchBar += '<div class="first-step">' +
-                                     '<div class="time">' + heure +
-                                     '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt="">' + '</div>' +
-                                     '</div>' +
-                                     '<div class="ligne ligne' + data.journeys[i].sections[1].display_informations.code + '"></div>' +
-                                     '<div class="stations">' +
-                                     '<div class="start">' + data.journeys[i].sections[1].from.stop_point.name + '</div>' +
-                                     '<div class="start-direction">' +
-                                     '<span class="metro ligne' + data.journeys[i].sections[1].display_informations.code + '">Ligne ' + data.journeys[i].sections[1].display_informations.code + '</span>' +
-                                     '<i class="f7-icons">chevron-right</i>' +
-                                     data.journeys[i].sections[1].display_informations.direction.substring(0, data.journeys[i].sections[1].display_informations.direction.indexOf("(")) +
-                                     '</div>' +
-                                     '<div class="transport-mode">' +
-                                     '<i class="fa fa-subway" aria-hidden="true"></i>' +
-                                     Math.round(data.journeys[i].sections[1].duration / 60) + ' min' +
-                                     '</div>' +
-                                     '</div>' +
-                                     '</div>';
-                                 j++;
-                             }
-                             else {
-                                 itemStationSearchBar += '<div class="first-step">' +
-                                     '<div class="time">' + heure +
-                                     '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt="">' + '</div>' +
-                                     '<div class="end-time">' + arrive +
-                                     '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>' +
-                                     '</div>' +
-                                     '</div>' +
-                                     '<div class="ligne ligne' + data.journeys[i].sections[1].display_informations.code + '"></div>' +
-                                     '<div class="stations">' +
-                                     '<div class="start">' + data.journeys[i].sections[1].from.stop_point.name + '</div>' +
-                                     '<div class="start-direction">' +
-                                     '<span class="metro ligne' + data.journeys[i].sections[1].display_informations.code + '">Ligne ' + data.journeys[i].sections[1].display_informations.code + '</span>' +
-                                     '<i class="f7-icons">chevron-right</i>' +
-                                     data.journeys[i].sections[1].display_informations.direction.substring(0, data.journeys[i].sections[1].display_informations.direction.indexOf("(")) +
-                                     '</div>' +
-                                     '<div class="transport-mode">' +
-                                     '<i class="fa fa-subway" aria-hidden="true"></i>' +
-                                     Math.round(data.journeys[i].sections[1].duration / 60) + ' min' +
-                                     '</div>' +
-                                     '<div class="end">' + data.journeys[i].sections[1].to.stop_point.name + '</div>' +
-                                     '</div>' +
-                                     '</div>';
-                                 j++;
-                             }
-                         }
-                         else if(data.journeys[i].sections[j].to.name!=data.journeys[i].sections[j].from.name) {
-                             itemStationSearchBar += '<div class="step walk">' +
-                                                        '<div class="time">' + heure +
-                                                            '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>' +
-                                                        '</div>' +
-                                                        '<div class="ligne"></div>' +
-                                                        '<div class="stations">' +
-                                                            '<div class="start">' + data.journeys[i].sections[0].from.stop_area.name + '</div>' +
-                                                            '<div class="transport-mode">' +
-                                                                '<i class="fa walking-icon" aria-hidden="true"></i>' +
-                                                                Math.round(data.journeys[i].sections[0].duration / 60) + ' min' +
-                                                            '</div>' +
-                                                        '</div>' +
-                                                     '</div>';
-                         }
-                         else {
-                             itemStationSearchBar += '<div class="step walk">' +
-                                 '<div class="time">' + heure +
-                                 '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>' +
-                                 '</div>' +
-                                 '<div class="ligne"></div>' +
-                                 '<div class="stations">' +
-                                 '<div class="start">' + data.journeys[i].sections[0].from.name + '</div>' +
-                                 '<div class="transport-mode">' +
-                                 '<i class="fa walking-icon" aria-hidden="true"></i>' +
-                                 Math.round(data.journeys[i].sections[j].duration/60) +
-                                 ' min' +
-                                 '</div>' +
-                                 '</div>' +
-                                 '</div>';
-                         }
-                        }
-                    else if(j==0 && data.journeys[i].sections[j].type=="public_transport") {
-                        itemStationSearchBar += '<div class="first-step">' +
-                                                    '<div class="time">' + heure + 
-                                                        '<div class="now">'+
-                                                            '<img src="img/icons/mobile-phone-with-wifi.svg" alt="">'+
-                                                        '</div>' +
-                                                    '</div>' + 
-                                                    '<div class="ligne ligne' + data.journeys[i].sections[0].display_informations.code + '"></div>' +
-                                                    '<div class="stations">' +
-                                                        '<div class="start">' + data.journeys[i].sections[0].from.stop_point.name + '</div>' +
-                                                            '<div class="start-direction">' +
-                                                                '<span class="metro ligne' + data.journeys[i].sections[0].display_informations.code + '">Ligne ' + data.journeys[i].sections[0].display_informations.code + '</span>' +
-                                                                '<i class="f7-icons">chevron-right</i>' + 
-                                                                data.journeys[i].sections[0].display_informations.direction.substring(0,data.journeys[i].sections[0].display_informations.direction.indexOf("(")) + 
-                                                            '</div>' +
-                                                            '<div class="transport-mode">' +
-                                                                '<i class="fa fa-subway" aria-hidden="true"></i>' +
-                                                                Math.round(data.journeys[i].sections[0].duration/60) + ' min' +
-                                                            '</div>' +
-                                                        '</div>' +
-                                                    '</div>';
                     }
-
 
                     liAccordion += '<div class="item-details">' +
                         '<div>' +
@@ -361,28 +250,6 @@ class PathItineraryView {
                         '</div>' +
                         '</li>';
 
-
-                    /*if(data.journeys[i].type == 'best')
-                     {
-                     itemStationSearchBar += "<p><B><U>Trajet recommandé : </U></B></p>"
-                     }
-                     if(data.journeys[i].type == 'fastest')
-                     {
-                     itemStationSearchBar += "<p><B><U>Trajet le plus rapide : </U></B></p>"
-                     }
-                     if(data.journeys[i].type == 'comfort')
-                     {
-                     itemStationSearchBar += "<p><B><U>Trajet le plus comfortable : </U></B></p>"
-                     }*/
-                    /*itemStationSearchBar += '<li class="item-content">' +
-                     '<div class="item-inner">' +
-                     '<a href="nextTrains.html?codeStation='+data[i].stop_area+'='+data[i].name+'">' +
-                     '<div class="item-title">'+data[i].name+'</div>' +
-                     '</a>' +
-                     '</div>' +
-                     '</li>';*/
-
-
                     //Chaque étape
                     for (var j = 0; j < data.journeys[i].sections.length; j++) {
                         var time = data.journeys[i].sections[j].departure_date_time.split("T");
@@ -390,10 +257,6 @@ class PathItineraryView {
                         var h = fullTime.slice(0, 2);
                         var m = fullTime.slice(2, 4);
                         var heure = h + ":" + m;
-
-                        /*if(data.journeys[i].sections[j].from !== undefined)
-                         {
-                         */
 
                         if (j == 0 && (data.journeys[i].sections[j].type == "transfer" || data.journeys[i].sections[j].type == "waiting" || data.journeys[i].sections[j].type == "crow_fly" || data.journeys[i].sections[j].type == "street_network")) {
                             if (data.journeys[i].sections[j].duration == 0 && data.journeys[i].sections[j].to.name == data.journeys[i].sections[j].from.name) {
@@ -403,7 +266,7 @@ class PathItineraryView {
                                         '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt="">' + '</div>';
 
                                     if ((j + 2) == data.journeys[i].sections.length - 1) {
-                                        if ((data.journeys[i].sections[j + 2].type == "transfer" || data.journeys[i].sections[j + 2].type == "waiting" || data.journeys[i].sections[j + 2].type == "crow_fly" || data.journeys[i].sections[j + 2].type == "street_network") && data.journeys[i].sections[j+2].duration==0 /*data.journeys[i].sections[j + 2].from.name == data.journeys[i].sections[j + 2].to.name*/) {
+                                        if ((data.journeys[i].sections[j + 2].type == "transfer" || data.journeys[i].sections[j + 2].type == "waiting" || data.journeys[i].sections[j + 2].type == "crow_fly" || data.journeys[i].sections[j + 2].type == "street_network") && data.journeys[i].sections[j + 2].duration == 0 /*data.journeys[i].sections[j + 2].from.name == data.journeys[i].sections[j + 2].to.name*/) {
                                             itemStationSearchBar += '<div class="end-time">' + arrive +
                                                 '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>' +
                                                 '</div>';
@@ -425,7 +288,7 @@ class PathItineraryView {
                                         '</div>';
 
                                     if ((j + 2) == data.journeys[i].sections.length - 1) {
-                                        if ((data.journeys[i].sections[j + 2].type == "transfer" || data.journeys[i].sections[j + 2].type == "waiting" || data.journeys[i].sections[j + 2].type == "crow_fly" || data.journeys[i].sections[j + 2].type == "street_network") && data.journeys[i].sections[j+2].duration==0 /*data.journeys[i].sections[j + 2].from.name == data.journeys[i].sections[j + 2].to.name*/) {
+                                        if ((data.journeys[i].sections[j + 2].type == "transfer" || data.journeys[i].sections[j + 2].type == "waiting" || data.journeys[i].sections[j + 2].type == "crow_fly" || data.journeys[i].sections[j + 2].type == "street_network") && data.journeys[i].sections[j + 2].duration == 0 /*data.journeys[i].sections[j + 2].from.name == data.journeys[i].sections[j + 2].to.name*/) {
                                             itemStationSearchBar += '<div class="end">' + data.journeys[i].sections[1].to.stop_point.name + '</div>';
                                         }
                                     }
@@ -474,8 +337,8 @@ class PathItineraryView {
                                     '</div>' +
                                     '</div>' +
                                     '</div>';
-                            }
-                            else {
+
+                            } else {
                                 itemStationSearchBar += '<div class="step walk">' +
                                     '<div class="time">' + heure +
                                     '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>' +
@@ -514,26 +377,8 @@ class PathItineraryView {
                                 '</div>' +
                                 '</div>';
                         }
-
                         else if (data.journeys[i].sections[j].stop_date_times !== undefined && j != data.journeys[i].sections.length - 1) {
-                            // Récupère chaque arrêt passé
-                            /*var arret = "";
-                             for(var l = 1; l < data.journeys[i].sections[j].stop_date_times.length - 1; l++)
-                             {
-                             arret += data.journeys[i].sections[j].stop_date_times[l].stop_point.name+", ";
-                             }
 
-                             arret = arret.substring(0,arret.length - 2);*/
-
-
-                            // Version sans css
-                            /*
-                             itemStationSearchBar += '<p>Je prends le '+ data.journeys[i].sections[j].display_informations.commercial_mode +' '
-                             + data.journeys[i].sections[j].display_informations.code +' en partant de '+ data.journeys[i].sections[j].from.name +
-                             ' en direction de  ' + data.journeys[i].sections[j].display_informations.direction + ' jusqu\'a '
-                             +data.journeys[i].sections[j].to.name+ ' dans '+(data.journeys[i].sections[j].stop_date_times.length-1)+' arrets à '+ heure+ ' en passant par '+arret+ '.</p>';
-                             itemStationSearchBar += '<p>Durée : '+ data.journeys[i].sections[j].duration +' secondes.</p>';
-                             */
                             if ((j + 1) != data.journeys[i].sections.length - 1) {
                                 itemStationSearchBar += '<div class="step">' +
                                     '<div class="time">' + heure +
@@ -582,8 +427,7 @@ class PathItineraryView {
                                     '</div>' +
                                     '</div>';
                                 j += 2;
-                            }
-                            else if (data.journeys[i].sections[j + 1].duration != 0) {
+                            } else if (data.journeys[i].sections[j + 1].duration != 0) {
                                 itemStationSearchBar += '<div class="step">' +
                                     '<div class="time">' + heure +
                                     '<div class="now">' +
@@ -621,14 +465,11 @@ class PathItineraryView {
                                     ' min' +
                                     '</div>' +
                                     '<div class="end">' + data.journeys[i].sections[j + 1].to.stop_area.name + '</div>' +
-
                                     '</div>' +
                                     '</div>';
 
                                 j += 2;
-                            }
-
-                            else {
+                            } else {
                                 itemStationSearchBar += '<div class="step">' +
                                     '<div class="time">' + heure +
                                     '<div class="now">' +
@@ -658,20 +499,6 @@ class PathItineraryView {
                             }
 
                         }
-                        /*else if(j==data.journeys[i].sections.length-1 && (data.journeys[i].sections[j].type=="" || data.journeys[i].sections[j].type=="waiting" || data.journeys[i].sections[j].type=="crow_fly")) {
-                         itemStationSearchBar += '<div class="step"><div class="time">' + heure + '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div><div class="end-time">' + arrive + '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div></div></div><div class="ligne ligne' + data.journeys[i].sections[j].display_informations.code + '"></div><div class="stations"><div class="start">' + data.journeys[i].sections[j].from.stop_point.name + '</div><div class="start-direction"><span class="metro ligne"' + data.journeys[i].sections[j].display_informations.code + '">Ligne ' + data.journeys[i].sections[j].display_informations.code + '</span><i class="f7-icons">chevron-right</i>' + data.journeys[i].sections[j].display_informations.direction.substring(0,data.journeys[i].sections[j].display_informations.direction.indexOf("(")) + '</div><div class="transport-mode"><i class="fa fa-subway" aria-hidden="true"></i>' + Math.round(data.journeys[i].sections[j].duration/60) + '</div><div class="end">' +data.journeys[i].sections[j].to.name + '</div></div></div></div>';
-                         console.log(itemStationSearchBar);
-                         j++;
-                         }*/
-                        // dernière étape
-                        /*else if (j==data.journeys[i].sections.length-1 && (data.journeys[i].sections[j].type=="" || data.journeys[i].sections[j].type=="waiting" || data.journeys[i].sections[j].type=="crow_fly")) {
-                         itemStationSearchBar += '<div class="step"><div class="time">' + heure + '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div><div class="end-time">' + arrive + '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div></div></div><div class="ligne ligne' + data.journeys[i].sections[j].display_informations.code + '"></div><div class="stations"><div class="start">' + data.journeys[i].sections[j].from.stop_point.name + '</div><div class="start-direction"><span class="metro ligne"' + data.journeys[i].sections[j].display_informations.code + '">Ligne ' + data.journeys[i].sections[j].display_informations.code + '</span><i class="f7-icons">chevron-right</i>' + data.journeys[i].sections[j].display_informations.direction.substring(0,data.journeys[i].sections[j].display_informations.direction.indexOf("(")) + '</div><div class="transport-mode"><i class="fa fa-subway" aria-hidden="true"></i>' + Math.round(data.journeys[i].sections[j].duration/60) + '</div><div class="end">' +data.journeys[i].sections[j].to.name + '</div></div></div></div>';
-                         j++;
-                         }*/
-                        /*else if (j==data.journeys[i].sections.length-1) {
-                         itemStationSearchBar += '<div class="step"><div class="time">' + heure + '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div><div class="end-time">' + arrive + '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div></div></div><div class="ligne ligne' + data.journeys[i].sections[j].display_informations.code + '"></div><div class="stations"><div class="start">' + data.journeys[i].sections[j].from.name + '</div><div class="start-direction"><span class="metro ligne"' + data.journeys[i].sections[j].display_informations.code + '">Ligne ' + data.journeys[i].sections[j].display_informations.code + '</span><i class="f7-icons">chevron-right</i>' + data.journeys[i].sections[j].display_informations.direction + '</div><div class="transport-mode"><i class="fa fa-subway" aria-hidden="true"></i>' + Math.round(data.journeys[i].sections[j].duration/60) + '</div><div class="end">' +data.journeys[i].sections[j].to.name + '</div></div></div></div>';
-                         }*/
-                        // étape de marche ou d'attente
                         else {
                             if (data.journeys[i].sections[j].duration !== 0) {
                                 if (data.journeys[i].sections[j].type == "transfer" || data.journeys[i].sections[j].type == "waiting") {
@@ -695,41 +522,26 @@ class PathItineraryView {
                                     if (data.journeys[i].sections[j].type == "waiting") {
                                         //itemStationSearchBar += '<p>J\'attends pendant '+data.journeys[i].sections[j].duration+ ' secondes.</p>';
                                     }
-                                }
-                                else {
-
+                                } else {
                                     //itemStationSearchBar += '<p>Je pars de '+ data.journeys[i].sections[j].from.name +' en direction de  ' + data.journeys[i].sections[j].to.name + ' à '+ heure+ '</p>';
                                 }
                             }
                         }
-
                     }
-                    console.log(i+ itemStationSearchBar);
+                    console.log(i + itemStationSearchBar);
 
                     idAccordion += '#accordion-' + data.journeys[i].type;
                     tabJourneys.push(idAccordion);
                     tabIti.push(itemStationSearchBar);
-                    /*	else
-                     {
-                     itemStationSearchBar += '<p> Je marche pendant ' + data.journeys[i].sections[j].duration+' secondes';
-                     }*/
-                    //}
 
-                    //itemStationSearchBar += '<p>Durée du trajet : '+data.journeys[i].duration+' sec dont '+data.journeys[i].durations.walking+' sec de marche</p>';
-                    //itemStationSearchBar += '<p>Heure d\'arrivé : '+arrive+'</p>';
-                    //itemStationSearchBar += '<br>';
                 }
-
             }
-
             $$("#list-itineraries").html(liAccordion);
 
-            for(i=0;i<data.journeys.length;i++) {
-                    $$(tabJourneys[i]).html(tabIti[i]);
+            for (i = 0; i < data.journeys.length; i++) {
+                $$(tabJourneys[i]).html(tabIti[i]);
             }
-
-
-        }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
+        }, this)).fail(function (jqXHR, textStatus, errorThrown) {
             console.log('CALL API ITINERAIRE FAILED: ', jqXHR, textStatus, errorThrown);
         });
     }
