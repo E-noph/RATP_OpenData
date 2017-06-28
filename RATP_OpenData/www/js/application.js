@@ -11,7 +11,7 @@ class Application {
         this._serverPhonegap = location.href.split(':')[1].substr(2);
         this._user = "";
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
-        this._APIServer = 'http://134.157.46.190/server/';
+        this._APIServer = 'http://192.168.1.11/server/';
 
 
         // views
@@ -153,7 +153,7 @@ class Application {
                         '<i class="f7-icons close-button">close</i>'+
                      '</a>'+
                      '<div class="list-block-label">' +
-                        '<p>Bonjour <span class="username">'+this._username+'</span></p></p>'+
+                        '<p class="login-hello">Bonjour <span class="username">'+this._username+'</span></p></p>'+
                         '<p><a href="#" class="icon-green" id="logout">Se déconnecter</a></p>'+
                     '</div>';
         $$('.login-screen-content').html(result);

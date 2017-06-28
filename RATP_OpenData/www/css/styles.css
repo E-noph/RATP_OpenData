@@ -218,6 +218,10 @@ input#login-screen-password::-webkit-input-placeholder,
     text-align: center;
 }
 
+.login-hello{
+    font-size: 1.5em;
+}
+
 #subscribe, #searchItinerary-go{
     color: #50E3C2;
     font-weight: 400;
@@ -417,6 +421,8 @@ i.fa {
 .itineraire .stations .transport-mode{
     margin: 10px 0 50px 0;
     color: #B6B6B6;
+    display: flex;
+    align-items: center;
 }
 
 .itineraire .step.walk .stations .transport-mode{
@@ -435,6 +441,8 @@ i.fa {
 
 .itineraire .start-direction{
     color: #B6B6B6;
+    display: flex;
+    align-items: baseline;
 }
 
 .itineraire .start-direction span{
@@ -462,9 +470,6 @@ i.fa {
     z-index: 50;
 }
 
-.itineraire .walk .ligne{
-    background: #B6B6B6;
-}
 
 .itineraire .walk .ligne {
     background: #B6B6B6;
@@ -485,7 +490,7 @@ i.fa {
     border: 3px solid #fff;
     border-radius: 40px;
     position: absolute;
-    bottom: -4px;
+    bottom: -3px;
     left: -3px;
     z-index: 2000;
 }
@@ -501,6 +506,10 @@ i.fa {
     bottom: -8px;
     left: -7px;
     z-index: 1000;
+}
+
+.step:last-of-type .ligne::after {
+    bottom: -4px;
 }
 
 /*Couleurs des lignes*/
@@ -653,4 +662,82 @@ i.fa {
 }
 .step:last-of-type .ligne.ligneE::before {
     border-color: #E37ED1;
+}
+
+.ligne.ligneT1{
+    background-color: #003CA6;
+}
+.step:last-of-type .ligne.ligneT1::before {
+    border-color: #003CA6;
+}
+
+.ligne.ligneT2{
+    background-color: #CF009E;
+}
+.step:last-of-type .ligne.ligneT2::before {
+    border-color: #CF009E;
+}
+
+.ligne.ligneT3A{
+    background-color: #FF7E2E;
+}
+.step:last-of-type .ligne.ligneT3A::before {
+    border-color: #FF7E2E;
+}
+
+.ligne.ligneT3B{
+    background-color: #00AE41;
+}
+.step:last-of-type .ligne.ligneT3B::before {
+    border-color: #00AE41;
+}
+
+.step:last-of-type .ligne::before {
+    border: 4px solid #000;
+}
+
+.walk.step:last-of-type .ligne::before {
+    border: 4px solid #B6B6B6;
+}
+
+/*Logo du métro sur les métros*/
+
+.ligne1+.stations i.fa::before,
+.ligne2+.stations i.fa::before,
+.ligne3+.stations i.fa::before,
+.ligne4+.stations i.fa::before,
+.ligne5+.stations i.fa::before,
+.ligne6+.stations i.fa::before,
+.ligne7+.stations i.fa::before,
+.ligne8+.stations i.fa::before,
+.ligne9+.stations i.fa::before,
+.ligne10+.stations i.fa::before,
+.ligne11+.stations i.fa::before,
+.ligne12+.stations i.fa::before,
+.ligne13+.stations i.fa::before,
+.ligne14+.stations i.fa::before,
+.ligne7B+.stations i.fa::before,
+.ligne3B+.stations i.fa::before {
+    content: "\f239";
+}
+
+.ligneA+.stations i.fa::before,
+.ligneB+.stations i.fa::before,
+.ligneC+.stations i.fa::before,
+.ligneD+.stations i.fa::before,
+.ligneE+.stations i.fa::before {
+    content: "\f238";
+}
+
+.ligneT1+.stations i.fa::before,
+.ligneT2+.stations i.fa::before,
+.ligneT3A+.stations i.fa::before,
+.ligneT3B+.stations i.fa::before {
+    content: "\f238";
+}
+
+/*Affichage logo BUS*/
+
+span.metro {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/4/49/Paris_logo_bus_jms.svg);
 }

@@ -7,7 +7,7 @@ class PathItineraryView {
     constructor() {
         console.log("pathItinerary:constructor()");
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
-        this._Host = 'http://134.157.46.190/';
+        this._Host = 'http://192.168.1.11/';
         this._apiURIstation = 'server/station.php';
         this._apiURIitinerary = 'server/itinerary.php';
         this._date = "";
@@ -283,7 +283,7 @@ class PathItineraryView {
                                         data.journeys[i].sections[1].display_informations.direction.substring(0, data.journeys[i].sections[1].display_informations.direction.indexOf("(")) +
                                         '</div>' +
                                         '<div class="transport-mode">' +
-                                        '<i class="fa fa-subway" aria-hidden="true"></i>' +
+                                        '<i class="fa fa-bus" aria-hidden="true"></i>' +
                                         Math.round(data.journeys[i].sections[1].duration / 60) + ' min' +
                                         '</div>';
 
@@ -314,7 +314,7 @@ class PathItineraryView {
                                         data.journeys[i].sections[1].display_informations.direction.substring(0, data.journeys[i].sections[1].display_informations.direction.indexOf("(")) +
                                         '</div>' +
                                         '<div class="transport-mode">' +
-                                        '<i class="fa fa-subway" aria-hidden="true"></i>' +
+                                        '<i class="fa fa-bus" aria-hidden="true"></i>' +
                                         Math.round(data.journeys[i].sections[1].duration / 60) + ' min' +
                                         '</div>' +
                                         '<div class="end">' + data.journeys[i].sections[1].to.stop_point.name + '</div>' +
@@ -371,7 +371,7 @@ class PathItineraryView {
                                 data.journeys[i].sections[0].display_informations.direction.substring(0, data.journeys[i].sections[0].display_informations.direction.indexOf("(")) +
                                 '</div>' +
                                 '<div class="transport-mode">' +
-                                '<i class="fa fa-subway" aria-hidden="true"></i>' +
+                                '<i class="fa fa-bus" aria-hidden="true"></i>' +
                                 Math.round(data.journeys[i].sections[0].duration / 60) + ' min' +
                                 '</div>' +
                                 '</div>' +
@@ -395,7 +395,7 @@ class PathItineraryView {
                                     data.journeys[i].sections[j].display_informations.direction.substring(0, data.journeys[i].sections[j].display_informations.direction.indexOf("(")) +
                                     '</div>' +
                                     '<div class="transport-mode">' +
-                                    '<i class="fa fa-subway" aria-hidden="true"></i>' +
+                                    '<i class="fa fa-bus" aria-hidden="true"></i>' +
                                     Math.round(data.journeys[i].sections[j].duration / 60) +
                                     ' min' +
                                     '</div>' +
@@ -419,7 +419,7 @@ class PathItineraryView {
                                     data.journeys[i].sections[j].display_informations.direction.substring(0, data.journeys[i].sections[j].display_informations.direction.indexOf("(")) +
                                     '</div>' +
                                     '<div class="transport-mode">' +
-                                    '<i class="fa fa-subway" aria-hidden="true"></i>' +
+                                    '<i class="fa fa-bus" aria-hidden="true"></i>' +
                                     Math.round(data.journeys[i].sections[j].duration / 60) +
                                     ' min' +
                                     '</div>' +
@@ -443,7 +443,7 @@ class PathItineraryView {
                                     data.journeys[i].sections[j].display_informations.direction.substring(0, data.journeys[i].sections[j].display_informations.direction.indexOf("(")) +
                                     '</div>' +
                                     '<div class="transport-mode">' +
-                                    '<i class="fa fa-subway" aria-hidden="true"></i>' +
+                                    '<i class="fa fa-bus" aria-hidden="true"></i>' +
                                     Math.round(data.journeys[i].sections[j].duration / 60) +
                                     ' min' +
                                     '</div>' +
@@ -488,7 +488,7 @@ class PathItineraryView {
                                     data.journeys[i].sections[j].display_informations.direction.substring(0, data.journeys[i].sections[j].display_informations.direction.indexOf("(")) +
                                     '</div>' +
                                     '<div class="transport-mode">' +
-                                    '<i class="fa fa-subway" aria-hidden="true"></i>' +
+                                    '<i class="fa fa-bus" aria-hidden="true"></i>' +
                                     Math.round(data.journeys[i].sections[j].duration / 60) +
                                     ' min' +
                                     '</div>' +
