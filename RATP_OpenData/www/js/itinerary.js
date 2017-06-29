@@ -7,7 +7,7 @@ class PathItineraryView {
     constructor() {
         console.log("pathItinerary:constructor()");
         this._APINativia = 'https://9a515a8c-7b22-456e-8e0d-6bdddfd9206f@api.navitia.io/v1/coverage/fr-idf/';
-        this._Host = 'http://192.168.1.11/';
+        this._Host = 'http://134.157.46.190/';
         this._apiURIstation = 'server/station.php';
         this._apiURIitinerary = 'server/itinerary.php';
         this._date = "";

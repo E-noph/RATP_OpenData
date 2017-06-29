@@ -153,7 +153,7 @@ class Application {
                         '<i class="f7-icons close-button">close</i>'+
                      '</a>'+
                      '<div class="list-block-label">' +
-                        '<p>Bonjour <span class="username">'+this._username+'</span></p></p>'+
+                        '<p class="login-hello">Bonjour <span class="username">'+this._username+'</span></p></p>'+
                         '<p><a href="#" class="icon-green" id="logout">Se déconnecter</a></p>'+
                     '</div>';
         $$('.login-screen-content').html(result);
