@@ -276,7 +276,7 @@ class Application {
                 }
             } else {
                 console.log("error log !!");
-                myApp.alert("Erreur d'identification !!!");
+                myApp.alert("Nom d'utilisateur ou mot de passe incorrect", "Erreur d'authentification");
             }
         }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
             console.log('CALL API USER FAILED: ', jqXHR, textStatus, errorThrown);
