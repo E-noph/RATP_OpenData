@@ -316,7 +316,7 @@ class Application {
      *
      */
     initResultItinerary(query) {
-        this._pathItinerary.initResultItinerary(query.stationFormCode, query.stationToCode);
+        this._pathItinerary.initResultItinerary(query.stationFormCode, query.stationToCode, query.stationFrom, query.stationTo);
     }
 
     /**

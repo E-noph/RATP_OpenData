@@ -89,7 +89,7 @@ class AccountManager {
     }
 
     /**
-     *  Fonction pour supprimer un compte utilisateru de la base du téléphone
+     *  Fonction pour supprimer un compte utilisateur de la base du téléphone
      * @param event
      */
     deleteAccount(event){

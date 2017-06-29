@@ -109,6 +109,8 @@ class PathItineraryView {
                             query: {
                                 stationFormCode,
                                 stationToCode,
+                                stationFrom,
+                                stationTo
                             }
                         })
                     }, 500);
@@ -161,9 +163,14 @@ class PathItineraryView {
      * @param codeStationFrom
      * @param codeStationTo
      */
-    initResultItinerary(codeStationFrom, codeStationTo) {
+    initResultItinerary(codeStationFrom, codeStationTo, stationFrom, stationTo) {
         console.log("initResultItinerary:::" + codeStationFrom + "," + codeStationTo);
         this._date = this.getDate();
+
+        let itineraire = stationFrom + " - " + stationTo;
+        $$("#trajet-title").html(itineraire);
+
+
         this.callAPIItineraire(codeStationFrom, codeStationTo, this._date);
     }
 

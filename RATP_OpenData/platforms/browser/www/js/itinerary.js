@@ -109,6 +109,8 @@ class PathItineraryView {
                             query: {
                                 stationFormCode,
                                 stationToCode,
+                                stationFrom,
+                                stationTo
                             }
                         })
                     }, 500);
@@ -161,9 +163,14 @@ class PathItineraryView {
      * @param codeStationFrom
      * @param codeStationTo
      */
-    initResultItinerary(codeStationFrom, codeStationTo) {
+    initResultItinerary(codeStationFrom, codeStationTo, stationFrom, stationTo) {
         console.log("initResultItinerary:::" + codeStationFrom + "," + codeStationTo);
         this._date = this.getDate();
+
+        let itineraire = stationFrom + " - " + stationTo;
+        $$("#trajet-title").html(itineraire);
+
+
         this.callAPIItineraire(codeStationFrom, codeStationTo, this._date);
     }
 
@@ -503,7 +510,6 @@ class PathItineraryView {
                             if (data.journeys[i].sections[j].duration !== 0) {
                                 if (data.journeys[i].sections[j].type == "transfer" || data.journeys[i].sections[j].type == "waiting") {
                                     if (data.journeys[i].sections[j].type == "transfer") {
-                                        //itemStationSearchBar += '<p>Je marche pendant '+data.journeys[i].sections[j].duration+ ' secondes.</p>';
                                         itemStationSearchBar += '<div class="step walk">' +
                                             '<div class="time">' + heure +
                                             '<div class="now"><img src="img/icons/mobile-phone-with-wifi.svg" alt=""></div>' +
@@ -528,7 +534,6 @@ class PathItineraryView {
                             }
                         }
                     }
-                    console.log(i + itemStationSearchBar);
 
                     idAccordion += '#accordion-' + data.journeys[i].type;
                     tabJourneys.push(idAccordion);

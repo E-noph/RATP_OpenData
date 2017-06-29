@@ -33,7 +33,7 @@ class Application {
     }
 
     /**
-     * Get APIServer
+     * Get APIServer + Création de la base de données interne au téléphone
      */
     getAPI() {
 
@@ -143,7 +143,9 @@ class Application {
 
     }
 
-
+    /**
+     * Fonction pour se déconnecter de l'application
+     */
     disconnect() {
         myApp.loginScreen();
         let result = '<div class="login-screen-title i18n">' +
@@ -274,7 +276,7 @@ class Application {
                 }
             } else {
                 console.log("error log !!");
-                myApp.alert("Erreur d'identification !!!");
+                myApp.alert("Nom d'utilisateur ou mot de passe incorrect", "Erreur d'authentification");
             }
         }, this)).fail(function( jqXHR, textStatus, errorThrown )  {
             console.log('CALL API USER FAILED: ', jqXHR, textStatus, errorThrown);
@@ -314,7 +316,7 @@ class Application {
      *
      */
     initResultItinerary(query) {
-        this._pathItinerary.initResultItinerary(query.stationFormCode, query.stationToCode);
+        this._pathItinerary.initResultItinerary(query.stationFormCode, query.stationToCode, query.stationFrom, query.stationTo);
     }
 
     /**
