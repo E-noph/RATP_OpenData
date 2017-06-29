@@ -81,7 +81,6 @@ class StationView {
                 }
                $$('#list-items-stations').html(itemStationSearchBar);
 
-                //test.callAPIStation(data[0].stop_area,"20170615T164106&");
             }
         });
     }
@@ -205,17 +204,6 @@ class StationView {
 
             console.log('getAPIstation response', res);
 
-            // Tableau contenant le nombre d'affichage de chaque métro, 1 case par métro (de 1 à 16, 0 est vide, 15 et 16 correspondent au métro 3B et 7B)
-/*
-            var metroCount = [][];
-            for(var j = 0; j <= 14; j++) {
-                metroCount[j] = 0;
-                for(var k = 0; k <= 2; k++) {
-                    metroCount[j][k] = 0;
-                }
-            }
-*/
-
             var metroTab = {};
             var affTab = {};
             var result = '<div class="content-block-title">' + nameStation + '</div><div class="list-block media-list"><ul>';
@@ -226,7 +214,6 @@ class StationView {
                     // Cette chaîne concatène la ligne du métro et sa direction
                     var strFullInfo = data.departures[i].display_informations.code + data.departures[i].display_informations.direction.substring(0,data.departures[i].display_informations.direction.indexOf("("));
                     if(metroTab.hasOwnProperty(strFullInfo)) {
-                        //var tmp = parseInt(data.departures[i].display_informations.code);
                         if(metroTab[strFullInfo]<2) {
                             // On récupère la date d'arrivée du prochain transport
                             var tmpTime = data.departures[i].stop_date_time.arrival_date_time;
@@ -277,7 +264,6 @@ class StationView {
 
             for(var affichage in affTab) {
                 newTab.push(affichage);
-                //result += affTab[affichage];
             }
 
             newTab.sort();

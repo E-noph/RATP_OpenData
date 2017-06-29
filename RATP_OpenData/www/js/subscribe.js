@@ -47,6 +47,12 @@ class SubscribeView {
         }));
     }
 
+    /**
+     * Fonction pour la création d'un utilisateur
+     * @param username
+     * @param mail
+     * @param password
+     */
     userSubscribe(username, mail, password) {
         console.log(username, mail, password);
         $.ajax({

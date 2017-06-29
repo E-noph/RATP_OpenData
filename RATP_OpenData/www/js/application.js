@@ -33,7 +33,7 @@ class Application {
     }
 
     /**
-     * Get APIServer
+     * Get APIServer + Création de la base de données interne au téléphone
      */
     getAPI() {
 
@@ -143,7 +143,9 @@ class Application {
 
     }
 
-
+    /**
+     * Fonction pour se déconnecter de l'application
+     */
     disconnect() {
         myApp.loginScreen();
         let result = '<div class="login-screen-title i18n">' +
